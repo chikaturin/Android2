@@ -10,21 +10,34 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.doan3.Fragment.NomalTicket;
 import com.example.doan3.Model.TicketNomal;
 import com.example.doan3.R;
 import java.util.ArrayList;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
     private Context context;
-    private TicketAdapter mListener;
-
     private ArrayList<TicketNomal> arr_tikket;
+    NomalTicket nomalTicket=new NomalTicket();
+    private AdapterListener price1;
+
+    public interface AdapterListener {
+        void price1(double price);
+        void price2(double price);
+        void price3(double price);
+    }
+    public void setAdapterListener(AdapterListener price) {
+        this.price1 = price;
+    }
 
     public TicketAdapter(Context context, ArrayList<TicketNomal> arr_tikket) {
         this.context = context;
         this.arr_tikket = arr_tikket;
     }
+
 
     @NonNull
     @Override
@@ -33,39 +46,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         View view = layoutInflater.inflate(R.layout.recyclethanhticket, parent, false);
         return new ViewHolder(view);
     }
-    private double pricetotal;
-    public double TotalPrice()
-    {
-        return pricetotal;
-    }
-    private double pricetotal1;
-    public double TotalPrice1()
-    {
-        return pricetotal1;
-    }
-    private double pricetotal2;
-    public double TotalPrice2()
-    {
-        return pricetotal2;
-    }
-    public interface AdapterListener {
-        void onDataPassed(double price);
-    }
-    private AdapterListener listener;
 
-    public void setAdapterListener(AdapterListener listener) {
-        this.listener = listener;
-    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TicketNomal ticket = arr_tikket.get(position);
         holder.txtNameAirplane.setText(ticket.getNamePlane());
         holder.txtprice.setText(String.format("%,.0f VNĐ", ticket.getPrice()));
-        pricetotal = ticket.getPrice();
         holder.txtprice1.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 100000));
-        pricetotal1= ticket.getPrice();
         holder.txtprice2.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 370000));
-        pricetotal2 = ticket.getPrice();
         holder.txtdeparture.setText(ticket.getDepartPlace());
         holder.txttime.setText(ticket.getTime());
         holder.txtdate.setText(ticket.getDateDepart() + " ");
@@ -78,10 +66,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose1);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose3);
-                double price = ticket.getPrice();
-                if (listener != null) {
-                    listener.onDataPassed(price);
-                }            }
+                nomalTicket.gotoadapter(ticket.getPrice());
+            }
         });
 
         holder.btnchoose2.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +76,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
                 toggleButton2(holder.btnchoose3);
-                TotalPrice1();
+                nomalTicket.gotoadapter(1000000);
             }
         });
 
@@ -100,9 +86,10 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose3);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
-                TotalPrice2();
+                nomalTicket.gotoadapter(ticket.getPrice());
             }
         });
+
     }
 
     private void toggleButton(Button button) {
@@ -116,12 +103,12 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             button.setText("Đã chọn");
         }
         button.setSelected(!button.isSelected());
-    }    private void toggleButton2(Button button) {
-            button.setBackgroundResource(R.drawable.raidusbutton);
-            button.setTextColor(Color.parseColor("#000000"));
-            button.setText("Chọn");
+    }
 
-        button.setSelected(!button.isSelected());
+    private void toggleButton2(Button button) {
+        button.setBackgroundResource(R.drawable.raidusbutton);
+        button.setTextColor(Color.parseColor("#000000"));
+        button.setText("Chọn");
     }
 
     @Override
@@ -150,3 +137,4 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         }
     }
 }
+

@@ -5,16 +5,19 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.doan3.Adapter.TicketAdapter;
+import com.example.doan3.ChooseTicket;
 import com.example.doan3.Model.TicketNomal;
 import com.example.doan3.R;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +33,7 @@ import java.util.ArrayList;
  * Use the {@link NomalTicket#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NomalTicket extends Fragment implements TicketAdapter.AdapterListener {
+public class NomalTicket extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,9 +49,13 @@ public class NomalTicket extends Fragment implements TicketAdapter.AdapterListen
     }
     RecyclerView recyclerView;
     TicketAdapter ticketAdapter;
+    private NomalTicket fragment; // Thêm trường để lưu tham chiếu đến Fragment
+
     ArrayList<TicketNomal> arr_ticket;
+    private TextView txtTotalPrice; // Khai báo TextView để lưu tham chiếu đến TextView trong Fragment
 
     View view=getView();
+    Button btnInforUser;
 
     /**
      * Use this factory method to create a new instance of
@@ -67,7 +74,7 @@ public class NomalTicket extends Fragment implements TicketAdapter.AdapterListen
         fragment.setArguments(args);
         return fragment;
     }
-
+//
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +82,6 @@ public class NomalTicket extends Fragment implements TicketAdapter.AdapterListen
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     private void loadData() {
@@ -101,6 +107,8 @@ public class NomalTicket extends Fragment implements TicketAdapter.AdapterListen
         arr_ticket = new ArrayList<>();
         ticketAdapter = new TicketAdapter(getActivity(), arr_ticket);
         recyclerView.setAdapter(ticketAdapter);
+        txtTotalPrice = view.findViewById(R.id.txttotalprice);
+        txtTotalPrice.setText("0");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
@@ -113,22 +121,32 @@ public class NomalTicket extends Fragment implements TicketAdapter.AdapterListen
         View view = inflater.inflate(R.layout.fragment_nomal_ticket, container, false);
         addControls(view);
         loadData();
-        return view;
-    }
+        btnInforUser = view.findViewById(R.id.btninforuser);
+        ChooseTicket chooseAirlineTicketsActivity=(ChooseTicket) getActivity();
 
-    @Override
-    public void onDataPassed(double price) {
-        updateTotalPrice(price);
-    }
-
-    public void updateTotalPrice(double price) {
+        btnInforUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fmticket1, new InputInforUserTicKet());
+                transaction.commit();
+                chooseAirlineTicketsActivity.ChangeColor(R.drawable.circle_gray,R.drawable.circle,R.drawable.circle_gray);
+            }
+        });
         Txttotalprice=view.findViewById(R.id.txttotalprice);
-        Txttotalprice.setText(String.valueOf(price));
+        txttongtien= (TextView) view.findViewById(R.id.tongtien);
+        return view;}
+    public void gotoadapter(double price)
+    {
+        if(view!=null)
+        {
+            Txttotalprice.setText(price+"");
+            txttongtien.setText((price+""));
+        }
     }
-    TextView textView;
     LinearLayout nomalticket,vipticket,lnmain;
     Color color;
-    TextView text,text1,text2,text3,Txttotalprice;
+    TextView text,text1,text2,text3,Txttotalprice,txttongtien;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

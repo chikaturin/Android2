@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.doan3.Fragment.InputInforUserTicKet;
 import com.example.doan3.Fragment.NomalTicket;
+import com.example.doan3.Fragment.Pay_Fragment;
 
 public class ChooseTicket extends AppCompatActivity {
 
@@ -32,22 +34,24 @@ public class ChooseTicket extends AppCompatActivity {
                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fmticket1);
                 if (currentFragment instanceof NomalTicket) {
                     finish();
-                } /*else if (currentFragment instanceof InforUserOfTicket) {
+                }
+                else if (currentFragment instanceof InputInforUserTicKet) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fmticket1, FirstChooseFragment.class,null);
+                    transaction.replace(R.id.fmticket1, NomalTicket.class,null);
                     transaction.commit();
                     img1.setBackgroundResource(R.drawable.circle);
                     img2.setBackgroundResource(R.drawable.circle_gray);
                     img3.setBackgroundResource(R.drawable.circle_gray);
                 }
-                else if (currentFragment instanceof PayTicket) {
+
+                else if (currentFragment instanceof Pay_Fragment) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fmticket1, InforUserOfTicket.class,null);
+                    transaction.replace(R.id.fmticket1, InputInforUserTicKet.class,null);
                     transaction.commit();
                     img1.setBackgroundResource(R.drawable.circle_gray);
                     img2.setBackgroundResource(R.drawable.circle);
                     img3.setBackgroundResource(R.drawable.circle_gray);
-                }*/
+                }
             }
         });
         btnout.setOnClickListener(new View.OnClickListener() {
