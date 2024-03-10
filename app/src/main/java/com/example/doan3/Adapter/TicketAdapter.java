@@ -48,7 +48,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
     {
         return pricetotal2;
     }
+    public interface AdapterListener {
+        void onDataPassed(double price);
+    }
+    private AdapterListener listener;
 
+    public void setAdapterListener(AdapterListener listener) {
+        this.listener = listener;
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TicketNomal ticket = arr_tikket.get(position);
@@ -71,8 +78,10 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose1);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose3);
-                TotalPrice();
-            }
+                double price = ticket.getPrice();
+                if (listener != null) {
+                    listener.onDataPassed(price);
+                }            }
         });
 
         holder.btnchoose2.setOnClickListener(new View.OnClickListener() {

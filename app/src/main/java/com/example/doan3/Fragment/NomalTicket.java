@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.doan3.Adapter.TicketAdapter;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * Use the {@link NomalTicket#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NomalTicket extends Fragment {
+public class NomalTicket extends Fragment implements TicketAdapter.AdapterListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +47,7 @@ public class NomalTicket extends Fragment {
     RecyclerView recyclerView;
     TicketAdapter ticketAdapter;
     ArrayList<TicketNomal> arr_ticket;
+
     View view=getView();
 
     /**
@@ -74,6 +75,7 @@ public class NomalTicket extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     private void loadData() {
@@ -102,6 +104,8 @@ public class NomalTicket extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -111,9 +115,60 @@ public class NomalTicket extends Fragment {
         loadData();
         return view;
     }
+
+    @Override
     public void onDataPassed(double price) {
-        price=ticketAdapter.TotalPrice1();
-        SelectTicket selectTicket=SelectTicket.Price(price);
+        updateTotalPrice(price);
     }
 
+    public void updateTotalPrice(double price) {
+        Txttotalprice=view.findViewById(R.id.txttotalprice);
+        Txttotalprice.setText(String.valueOf(price));
+    }
+    TextView textView;
+    LinearLayout nomalticket,vipticket,lnmain;
+    Color color;
+    TextView text,text1,text2,text3,Txttotalprice;
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        View view = getView();
+        if(view != null) {
+            Txttotalprice=view.findViewById(R.id.txttotalprice);
+            text=view.findViewById(R.id.textticket);
+            text1=view.findViewById(R.id.textticket1);
+            text2=view.findViewById(R.id.textticket2);
+            text3=view.findViewById(R.id.textticket3);
+            vipticket = view.findViewById(R.id.vipticket);
+            nomalticket = view.findViewById(R.id.nomalticket);
+
+            vipticket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    lnmain = view.findViewById(R.id.lmnomalticket);
+                    lnmain.setBackgroundColor(color.parseColor("#DAA20D"));
+                    text.setTextColor(color.parseColor("#ABD1BC"));
+                    text1.setTextColor(color.parseColor("#ABD1BC"));
+                    text2.setTextColor(color.parseColor("#FFFFFF"));
+                    text3.setTextColor(color.parseColor("#FFFFFF"));
+                    text1.setBackgroundColor(color.parseColor("#DAA20D"));
+                    text3.setBackgroundDrawable(getResources().getDrawable(R.drawable.underline3));
+                }
+            });
+
+            nomalticket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    lnmain = view.findViewById(R.id.lmnomalticket);
+                    lnmain.setBackgroundColor(color.parseColor("#005E79"));
+                    text2.setTextColor(color.parseColor("#ABD1BC"));
+                    text3.setTextColor(color.parseColor("#ABD1BC"));
+                    text.setTextColor(color.parseColor("#FFFFFF"));
+                    text1.setTextColor(color.parseColor("#FFFFFF"));
+                    text1.setBackgroundDrawable(getResources().getDrawable(R.drawable.underline2));
+                    text3.setBackgroundColor(color.parseColor("#005E79"));
+                }
+            });
+        }
+    }
 }

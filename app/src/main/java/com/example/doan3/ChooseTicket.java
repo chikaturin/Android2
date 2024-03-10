@@ -9,8 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.doan3.Fragment.ChooseAirPlane;
-import com.example.doan3.Fragment.SelectTicket;
+import com.example.doan3.Fragment.NomalTicket;
 
 public class ChooseTicket extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class ChooseTicket extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_ticket);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fmticket1, SelectTicket.class,null);
+        transaction.add(R.id.fmticket1, NomalTicket.class,null);
         transaction.commit();
         btnback=findViewById(R.id.btnbackinticket);
         btnout=findViewById(R.id.btnout);
@@ -31,7 +30,7 @@ public class ChooseTicket extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fmticket1);
-                if (currentFragment instanceof ChooseAirPlane) {
+                if (currentFragment instanceof NomalTicket) {
                     finish();
                 } /*else if (currentFragment instanceof InforUserOfTicket) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
