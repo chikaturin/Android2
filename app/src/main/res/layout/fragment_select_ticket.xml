@@ -18,7 +18,7 @@
         <LinearLayout
             android:id="@+id/lmnomalticket"
             android:layout_width="match_parent"
-            android:layout_height="491dp"
+            android:layout_height="468dp"
             android:background="@drawable/radiustop"
             android:orientation="vertical">
 
@@ -86,6 +86,63 @@
                 android:id="@+id/fmticketchoose"
                 android:layout_width="match_parent"
                 android:layout_height="405dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/underline"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng số tiền" />
+
+                    <TextView
+                        android:id="@+id/txttotalprice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="2,296,000 VND"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txttest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Chi tiết chuyến bay  v" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btninforuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radiusbutton2"
+                android:text="Nhập thông tin khách hàng >>"
+                app:backgroundTint="@null" />
 
         </LinearLayout>
     </LinearLayout>

@@ -51,6 +51,15 @@ public class SelectTicket extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    private double price;
+
+    public static SelectTicket Price(double price) {
+        SelectTicket fragment = new SelectTicket();
+        Bundle args = new Bundle();
+        args.putDouble("price", price);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,17 +82,22 @@ public class SelectTicket extends Fragment {
     LinearLayout nomalticket,vipticket,lnmain;
     View view=getView();
     Color color;
-    TextView text,text1,text2,text3;
+    TextView text,text1,text2,text3,Txttotalprice;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
         if(view != null) {
+            Txttotalprice=view.findViewById(R.id.txttotalprice);
             text=view.findViewById(R.id.textticket);
             text1=view.findViewById(R.id.textticket1);
             text2=view.findViewById(R.id.textticket2);
             text3=view.findViewById(R.id.textticket3);
             vipticket = view.findViewById(R.id.vipticket);
+            if (getArguments() != null) {
+                price = getArguments().getDouble("price");
+                Txttotalprice.setText("AAAA"); // Chuyển price thành chuỗi trước khi hiển thị
+            }
             vipticket.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

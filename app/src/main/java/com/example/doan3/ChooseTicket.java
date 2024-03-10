@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.doan3.Fragment.ChooseAirPlane;
+import com.example.doan3.Fragment.SelectTicket;
 
 public class ChooseTicket extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class ChooseTicket extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_ticket);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fmticket1, ChooseAirPlane.class,null);
+        transaction.add(R.id.fmticket1, SelectTicket.class,null);
         transaction.commit();
         btnback=findViewById(R.id.btnbackinticket);
         btnout=findViewById(R.id.btnout);

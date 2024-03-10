@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * Use the {@link NomalTicket#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NomalTicket extends Fragment{
+public class NomalTicket extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -111,4 +111,9 @@ public class NomalTicket extends Fragment{
         loadData();
         return view;
     }
+    public void onDataPassed(double price) {
+        price=ticketAdapter.TotalPrice1();
+        SelectTicket selectTicket=SelectTicket.Price(price);
+    }
+
 }

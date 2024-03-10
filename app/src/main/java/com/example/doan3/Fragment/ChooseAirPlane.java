@@ -65,7 +65,6 @@ public class ChooseAirPlane extends Fragment {
         transaction.add(R.id.fragmentlevelticket, SelectTicket.class,null);
         transaction.commit();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,4 +86,5 @@ public class ChooseAirPlane extends Fragment {
         // Trả về view đã inflate
         return view;
     }
+    TextView txtTotalprice;
 }
