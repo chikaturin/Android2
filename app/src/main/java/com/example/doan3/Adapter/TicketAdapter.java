@@ -66,7 +66,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose1);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose3);
-                nomalTicket.gotoadapter(ticket.getPrice());
             }
         });
 
@@ -76,7 +75,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
                 toggleButton2(holder.btnchoose3);
-                nomalTicket.gotoadapter(1000000);
             }
         });
 
@@ -86,7 +84,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose3);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
-                nomalTicket.gotoadapter(ticket.getPrice());
             }
         });
 

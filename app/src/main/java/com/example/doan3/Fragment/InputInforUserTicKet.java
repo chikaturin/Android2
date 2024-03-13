@@ -2,9 +2,11 @@ package com.example.doan3.Fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +16,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.doan3.ChooseTicket;
 import com.example.doan3.Model.InforUserTicket;
 import com.example.doan3.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,10 +51,11 @@ public class InputInforUserTicKet extends Fragment {
         // Required empty public constructor
     }
     LinearLayout btnbuttonsheet;
-    LinearLayout show;
+    LinearLayout show,hide;
     Button btnpay,btnadd;
     ImageView btnoutinput;
     EditText Lastname,Fistname,DateOfBirth,NumberPhone,Place;
+    TextView tvLastname,tvFistname,tvDateOfBirth,tvNumberPhone,tvPlace,tvgender,tvpersonal;
 
     private BottomSheetBehavior bottomSheetBehavior;
 
@@ -85,6 +93,7 @@ public class InputInforUserTicKet extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_input_infor_user_tic_ket, container, false);
         show = view.findViewById(R.id.show);
+        hide = view.findViewById(R.id.hide);
         btnbuttonsheet = view.findViewById(R.id.btn_buttonsheet);
         bottomSheetBehavior = BottomSheetBehavior.from(btnbuttonsheet);
         btnpay=view.findViewById(R.id.btnpay);
@@ -93,11 +102,27 @@ public class InputInforUserTicKet extends Fragment {
         DateOfBirth=view.findViewById(R.id.txtbirthday);
         NumberPhone=view.findViewById(R.id.txtphone);
         Place=view.findViewById(R.id.txtPlace);
+        //
+        tvLastname=view.findViewById(R.id.tvlastname);
+        tvFistname=view.findViewById(R.id.tvFirstName);
+        tvDateOfBirth=view.findViewById(R.id.tvbirthday);
+        tvNumberPhone=view.findViewById(R.id.tvphone);
+        tvPlace=view.findViewById(R.id.tvPlace);
+        tvgender=view.findViewById(R.id.tvgender);
+        tvpersonal=view.findViewById(R.id.tvpersonal);
+
         btnadd=view.findViewById(R.id.btnAdd);
+        hide.setVisibility(view.INVISIBLE);
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 firebase();
+                show.setVisibility(view.INVISIBLE);
+                hide.setVisibility(view.VISIBLE);
+
+                appearinforuser();
+
             }
         });
 
@@ -132,31 +157,67 @@ public class InputInforUserTicKet extends Fragment {
         int selectedId = genderRadioGroup.getCheckedRadioButtonId();
         String gender = "";
         if (selectedId != -1) {
-            RadioButton selectedRadioButton = view.findViewById(selectedId);
-            gender = selectedRadioButton.getText().toString();
+            RadioButton radioButton = view.findViewById(selectedId);
+            if (radioButton.getId() == R.id.radioButtonMale) {
+                gender = "Nam";
+            } else {
+                gender = "Nữ";
+            }
         }
 
-        RadioGroup PersonalRadioGroup = view.findViewById(R.id.radioGroupPersonalDocument);
-        int selectedId2 = PersonalRadioGroup.getCheckedRadioButtonId();
+        RadioGroup personalRadioGroup = view.findViewById(R.id.radioGroupPersonalDocument);
+        int selectedId2 = personalRadioGroup.getCheckedRadioButtonId();
         String personal = "";
         if (selectedId2 != -1) {
-            RadioButton selectedRadioButton = view.findViewById(selectedId2); // Chỉnh sửa ở đây
-            personal = selectedRadioButton.getText().toString();
+            RadioButton radioButton = view.findViewById(selectedId2);
+            if (radioButton.getId() == R.id.CCCD) {
+                personal = "CCCD";
+            } else {
+                personal = "PASSPORT";
+            }
         }
-
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         // Tạo một đối tượng user chứa thông tin người dùng
         Map<String, Object> InforUserTicket = new HashMap<>();
-        InforUserTicket.put("LastName", Lastname.getText().toString().trim());
-        InforUserTicket.put("FirstName", Fistname.getText().toString().trim());
-        InforUserTicket.put("BirthDay", DateOfBirth.getText().toString().trim());
-        InforUserTicket.put("NumberPhone", NumberPhone.getText().toString().trim());
-        InforUserTicket.put("Place", Place.getText().toString().trim());
-        InforUserTicket.put("Gender", gender);
-        InforUserTicket.put("Personal", personal);
+        InforUserTicket.put("firstName", Fistname.getText().toString().trim());
+        InforUserTicket.put("lastName", Lastname.getText().toString().trim());
+        InforUserTicket.put("birthDay", DateOfBirth.getText().toString().trim());
+        InforUserTicket.put("numberPhone", NumberPhone.getText().toString().trim());
+        InforUserTicket.put("gender", gender);
+        InforUserTicket.put("place", Place.getText().toString().trim());
+        InforUserTicket.put("personal", personal);
 
-        // Thêm đối tượng user vào bảng 'users' trong Firestore
-        InforUserTicket inforUserTicket = new InforUserTicket(Fistname.getText().toString(),Lastname.getText().toString(), DateOfBirth.getText().toString(),NumberPhone.getText().toString(),gender,Place.toString(),personal);
-        db.getReference().child("Users").setValue(inforUserTicket);
+        InforUserTicket inforUserTicket = new InforUserTicket(Fistname.getText().toString(),Lastname.getText().toString(), DateOfBirth.getText().toString(),NumberPhone.getText().toString(),gender,Place.getText().toString(),personal);
+        db.getReference().child("InforUserTicket").setValue(inforUserTicket);
     }
+void appearinforuser(){
+    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference=firebaseDatabase.getReference();
+     databaseReference.child("InforUserTicket").addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String firstName = snapshot.child("firstName").getValue(String.class);
+                String lastName = snapshot.child("lastName").getValue(String.class);
+                String birthDay = snapshot.child("birthDate").getValue(String.class);
+                String numberPhone = snapshot.child("NumberPhone").getValue(String.class);
+                String gender = snapshot.child("gender").getValue(String.class);
+                String place = snapshot.child("place").getValue(String.class);
+                String personal = snapshot.child("personal").getValue(String.class);
+                tvFistname.setText(firstName);
+                tvLastname.setText(lastName);
+                tvDateOfBirth.setText(birthDay);
+                tvNumberPhone.setText(numberPhone);
+                tvgender.setText(gender);
+                tvPlace.setText(place);
+                tvpersonal.setText(personal);
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            // Xử lý khi có lỗi xảy ra trong quá trình đọc dữ liệu từ Firebase
+            Log.e("FirebaseError", "Error reading data from Firebase: " + databaseError.getMessage());
+        }
+    });
+
+}
 }

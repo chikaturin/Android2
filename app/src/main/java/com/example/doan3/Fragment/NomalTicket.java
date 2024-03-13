@@ -136,14 +136,6 @@ public class NomalTicket extends Fragment {
         Txttotalprice=view.findViewById(R.id.txttotalprice);
         txttongtien= (TextView) view.findViewById(R.id.tongtien);
         return view;}
-    public void gotoadapter(double price)
-    {
-        if(view!=null)
-        {
-            Txttotalprice.setText(price+"");
-            txttongtien.setText((price+""));
-        }
-    }
     LinearLayout nomalticket,vipticket,lnmain;
     Color color;
     TextView text,text1,text2,text3,Txttotalprice,txttongtien;

@@ -1,80 +1,81 @@
 package com.example.doan3.Model;
 
 public class InforUserTicket {
-    private String FirstName;
-    private  String LastName;
-    private  String BirthDate;
-    private  String NumberPhone;
-    private  String Place;
-    private  String Gender;
-    private  String Personal;
+    private String firstName;
+    private String lastName;
+    private String birthDate;
+    private String numberPhone;
+    private String gender;
+    private String place;
+
+    private String personal;
 
     public InforUserTicket() {
     }
 
-    public InforUserTicket(String firstName, String lastName, String birthDate, String numberPhone, String place, String gender, String personal) {
-        FirstName = firstName;
-        LastName = lastName;
-        BirthDate = birthDate;
-        NumberPhone = numberPhone;
-        Place = place;
-        Gender = gender;
-        Personal = personal;
+    public InforUserTicket(String firstName, String lastName, String birthDate, String numberPhone, String gender, String place, String personal) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.numberPhone = numberPhone;
+        this.gender = gender;
+        this.place = place;
+        this.personal = personal;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getBirthDate() {
-        return BirthDate;
+        return birthDate;
     }
 
     public void setBirthDate(String birthDate) {
-        BirthDate = birthDate;
+        this.birthDate = birthDate;
     }
 
     public String getNumberPhone() {
-        return NumberPhone;
+        return numberPhone;
     }
 
     public void setNumberPhone(String numberPhone) {
-        NumberPhone = numberPhone;
-    }
-
-    public String getPlace() {
-        return Place;
-    }
-
-    public void setPlace(String place) {
-        Place = place;
+        this.numberPhone = numberPhone;
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
     public void setGender(String gender) {
-        Gender = gender;
+        this.gender = gender;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getPersonal() {
-        return Personal;
+        return personal;
     }
 
     public void setPersonal(String personal) {
-        Personal = personal;
+        this.personal = personal;
     }
 }
