@@ -57,7 +57,7 @@ public class Pay_Fragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    TextView tvprice,tvprice1,tvprice2,tvtime,tvdepartDate,tvdepartPlace,tvnameplane,tvarrivalPlace,tvdepartDate1;
+    TextView tvtimeArrival,tvprice,tvprice1,tvprice2,tvtime,tvdepartDate,tvdepartPlace,tvnameplane,tvarrivalPlace,tvdepartDate1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +72,7 @@ public class Pay_Fragment extends Fragment {
             String departPlace = getArguments().getString("departPlace");
             String namePlane = getArguments().getString("namePlane");
             String time = getArguments().getString("time");
+            String timeArrival = getArguments().getString("timeArrival");
 
             tvprice=view.findViewById(R.id.tvpricepay);
             tvprice1=view.findViewById(R.id.tvpricepay1);
@@ -82,6 +83,7 @@ public class Pay_Fragment extends Fragment {
             tvdepartPlace=view.findViewById(R.id.tvdepartPlacepay);
             tvnameplane=view.findViewById(R.id.txtnameAirplanepay);
             tvarrivalPlace=view.findViewById(R.id.tvarrivalPlacepay);
+            tvtimeArrival=view.findViewById(R.id.timeArrivalpay);
 
             tvprice.setText(price);
             tvprice1.setText(price);
@@ -92,6 +94,7 @@ public class Pay_Fragment extends Fragment {
             tvarrivalPlace.setText(arrivalPlace);
             tvnameplane.setText(namePlane);
             tvdepartPlace.setText(departPlace);
+            tvtimeArrival.setText(timeArrival);
         }
         return view;    }
 }

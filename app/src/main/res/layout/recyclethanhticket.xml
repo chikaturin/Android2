@@ -130,6 +130,7 @@
                     android:textColor="#7B7979" />
 
                 <TextView
+                    android:id="@+id/timeArrival"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"

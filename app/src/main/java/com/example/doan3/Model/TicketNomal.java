@@ -14,10 +14,13 @@ public class TicketNomal implements Serializable {
     private float price2;
 
 
+    private String timeArrival;
+
+
     public TicketNomal() {
     }
 
-    public TicketNomal(String namePlane, String dateDepart, String hours,String time, String minutes, String arrivalPlace, String departPlace, int price,int price1,float price2) {
+    public TicketNomal(String namePlane,String timeArrival, String dateDepart, String hours,String time, String minutes, String arrivalPlace, String departPlace, int price,int price1,float price2) {
         this.namePlane = namePlane;
         this.dateDepart = dateDepart;
         this.time = hours+minutes;
@@ -27,8 +30,15 @@ public class TicketNomal implements Serializable {
         this.price1 = price1;
         this.price2 = price2;
         this.time=time;
+        this.timeArrival=timeArrival;
+    }
+    public String getTimeArrival() {
+        return timeArrival;
     }
 
+    public void setTimeArrival(String timeArrival) {
+        this.timeArrival = timeArrival;
+    }
     public String getTime() {
         return time;
     }

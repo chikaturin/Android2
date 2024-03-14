@@ -179,6 +179,7 @@
                     android:textSize="16dp" />
 
                 <TextView
+                    android:id="@+id/timeArrivalpay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Null"
