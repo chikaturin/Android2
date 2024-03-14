@@ -77,12 +77,20 @@ public class ChooseTicket extends AppCompatActivity {
 
                 else if (currentFragment instanceof Pay_Fragment) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fmticket1,inputInforUserTicKet);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Price", price);
+
+                    InputInforUserTicKet inputInforUserTicKet = new InputInforUserTicKet();
+                    inputInforUserTicKet.setArguments(bundle);
+
+                    transaction.replace(R.id.fmticket1, inputInforUserTicKet);
                     transaction.commit();
                     img1.setBackgroundResource(R.drawable.circle_gray);
                     img2.setBackgroundResource(R.drawable.circle);
                     img3.setBackgroundResource(R.drawable.circle_gray);
                 }
+
             }
         });
         btnout.setOnClickListener(new View.OnClickListener() {
