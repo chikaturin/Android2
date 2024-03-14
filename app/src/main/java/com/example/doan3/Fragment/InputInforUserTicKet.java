@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -36,7 +35,7 @@ import java.util.Map;
  * Use the {@link InputInforUserTicKet#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InputInforUserTicKet extends Fragment {
+public class    InputInforUserTicKet extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,7 +54,7 @@ public class InputInforUserTicKet extends Fragment {
     Button btnpay,btnadd;
     Button btnoutinput;
     EditText Lastname,Fistname,DateOfBirth,NumberPhone,Place;
-    TextView tvLastname,tvFistname,tvDateOfBirth,tvNumberPhone,tvPlace,tvgender,tvpersonal;
+    TextView tvLastname,tvprice,tvFistname,tvDateOfBirth,tvNumberPhone,tvPlace,tvgender,tvpersonal;
 
     private BottomSheetBehavior bottomSheetBehavior;
 
@@ -102,7 +101,31 @@ public class InputInforUserTicKet extends Fragment {
         DateOfBirth=view.findViewById(R.id.txtbirthday);
         NumberPhone=view.findViewById(R.id.txtphone);
         Place=view.findViewById(R.id.txtPlace);
-        //
+        Pay_Fragment payFragment=new Pay_Fragment();
+        if(view!=null)
+        {
+            String price = getArguments().getString("Price");
+            String dateDepart = getArguments().getString("dateDepart");
+            String arrivalPlace = getArguments().getString("arrivalPlace");
+            String departPlace = getArguments().getString("departPlace");
+            String namePlane = getArguments().getString("namePlane");
+            String time = getArguments().getString("time");
+
+            tvprice=view.findViewById(R.id.tvpriceinfor);
+            tvprice.setText(price);
+
+            Bundle bundle = new Bundle();
+
+            bundle.putString("Price",price);
+            bundle.putString("dateDepart",dateDepart);
+            bundle.putString("arrivalPlace",arrivalPlace);
+            bundle.putString("departPlace",departPlace);
+            bundle.putString("namePlane",namePlane);
+            bundle.putString("time",time);
+
+            payFragment.setArguments(bundle);
+        }
+
         tvLastname=view.findViewById(R.id.tvlastname);
         tvFistname=view.findViewById(R.id.tvFirstName);
         tvDateOfBirth=view.findViewById(R.id.tvbirthday);
@@ -132,7 +155,7 @@ public class InputInforUserTicKet extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fmticket1, new Pay_Fragment());
+                transaction.replace(R.id.fmticket1,payFragment);
                 transaction.commit();
                 chooseTicket.ChangeColor(R.drawable.circle_gray,R.drawable.circle_gray,R.drawable.circle);
             }
@@ -199,7 +222,7 @@ void appearinforuser(){
                 String firstName = snapshot.child("firstName").getValue(String.class);
                 String lastName = snapshot.child("lastName").getValue(String.class);
                 String birthDay = snapshot.child("birthDate").getValue(String.class);
-                String numberPhone = snapshot.child("NumberPhone").getValue(String.class);
+                String numberPhone = snapshot.child("numberPhone").getValue(String.class);
                 String gender = snapshot.child("gender").getValue(String.class);
                 String place = snapshot.child("place").getValue(String.class);
                 String personal = snapshot.child("personal").getValue(String.class);

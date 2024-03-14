@@ -55,8 +55,6 @@ public class NomalTicket extends Fragment  {
     private NomalTicket fragment; // Thêm trường để lưu tham chiếu đến Fragment
 
     ArrayList<TicketNomal> arr_ticket;
-    private TextView txtTotalPrice; // Khai báo TextView để lưu tham chiếu đến TextView trong Fragment
-
     View view=getView();
     Button btnInforUser;
 
@@ -112,10 +110,7 @@ public class NomalTicket extends Fragment  {
         recyclerView.setAdapter(ticketAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
-
-
-
+    TextView txttottalprice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -123,35 +118,57 @@ public class NomalTicket extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_nomal_ticket, container, false);
         addControls(view);
         loadData();
+        InputInforUserTicKet inputInforUserTicKet=new InputInforUserTicKet();
+        if(view!=null)
+        {
+            String price = getArguments().getString("Price");
+            String dateDepart = getArguments().getString("dateDepart");
+            String arrivalPlace = getArguments().getString("arrivalPlace");
+            String departPlace = getArguments().getString("departPlace");
+            String namePlane = getArguments().getString("namePlane");
+            String time = getArguments().getString("time");
+
+            txttottalprice=view.findViewById(R.id.tvtotalprice);
+            txttottalprice.setText(price);
+            Bundle bundle = new Bundle();
+
+            bundle.putString("Price",price);
+            bundle.putString("dateDepart",dateDepart);
+            bundle.putString("arrivalPlace",arrivalPlace);
+            bundle.putString("departPlace",departPlace);
+            bundle.putString("namePlane",namePlane);
+            bundle.putString("time",time);
+
+            inputInforUserTicKet.setArguments(bundle);
+        }
+
         btnInforUser = view.findViewById(R.id.btninforuser);
         ChooseTicket chooseAirlineTicketsActivity=(ChooseTicket) getActivity();
-
         btnInforUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fmticket1, new InputInforUserTicKet());
+                transaction.replace(R.id.fmticket1,inputInforUserTicKet);
                 transaction.commit();
                 chooseAirlineTicketsActivity.ChangeColor(R.drawable.circle_gray,R.drawable.circle,R.drawable.circle_gray);
             }
         });
-        return view;}
+        return view;
+    }
     LinearLayout nomalticket,vipticket,lnmain;
     Color color;
-    TextView text,text1,text2,text3,Txttotalprice;
+    TextView text,text1,text2,text3;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
         if(view != null) {
-            Txttotalprice=view.findViewById(R.id.txttotalprice);
             text=view.findViewById(R.id.textticket);
             text1=view.findViewById(R.id.textticket1);
             text2=view.findViewById(R.id.textticket2);
             text3=view.findViewById(R.id.textticket3);
             vipticket = view.findViewById(R.id.vipticket);
             nomalticket = view.findViewById(R.id.nomalticket);
-
             vipticket.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -27,14 +27,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtdate"
+                    android:id="@+id/tvDatepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="22/02/2024"
                     android:textColor="#959595" />
 
                 <TextView
-                    android:id="@+id/txttime"
+                    android:id="@+id/tvtimepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="23:00"
@@ -43,7 +43,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtdeparture"
+                    android:id="@+id/tvdepartPlacepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="SGN"
@@ -92,14 +92,27 @@
                     android:text="2 tiếng 20 phút"
                     android:textSize="11dp" />
 
-                <TextView
-                    android:id="@+id/txtnameAirplane"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="VN270/Airbus A321"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtnameAirplanepay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="VN270"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -125,7 +138,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtdestination"
+                    android:id="@+id/tvarrivalPlacepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"

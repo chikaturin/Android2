@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.doan3.R;
 
@@ -56,11 +57,41 @@ public class Pay_Fragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    TextView tvprice,tvprice1,tvprice2,tvtime,tvdepartDate,tvdepartPlace,tvnameplane,tvarrivalPlace,tvdepartDate1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pay_, container, false);
-    }
+
+        View view = inflater.inflate(R.layout.fragment_pay_, container, false);
+        if(view!=null)
+        {
+            String price = getArguments().getString("Price");
+            String dateDepart = getArguments().getString("dateDepart");
+            String arrivalPlace = getArguments().getString("arrivalPlace");
+            String departPlace = getArguments().getString("departPlace");
+            String namePlane = getArguments().getString("namePlane");
+            String time = getArguments().getString("time");
+
+            tvprice=view.findViewById(R.id.tvpricepay);
+            tvprice1=view.findViewById(R.id.tvpricepay1);
+            tvprice2=view.findViewById(R.id.tvpricepay2);
+            tvtime=view.findViewById(R.id.tvtimepay);
+            tvdepartDate=view.findViewById(R.id.tvDatepay);
+            tvdepartDate1=view.findViewById(R.id.tvDate2pay);
+            tvdepartPlace=view.findViewById(R.id.tvdepartPlacepay);
+            tvnameplane=view.findViewById(R.id.txtnameAirplanepay);
+            tvarrivalPlace=view.findViewById(R.id.tvarrivalPlacepay);
+
+            tvprice.setText(price);
+            tvprice1.setText(price);
+            tvprice2.setText(price+"/Vé");
+            tvtime.setText(time);
+            tvdepartDate.setText(dateDepart);
+            tvdepartDate1.setText(dateDepart);
+            tvarrivalPlace.setText(arrivalPlace);
+            tvnameplane.setText(namePlane);
+            tvdepartPlace.setText(departPlace);
+        }
+        return view;    }
 }

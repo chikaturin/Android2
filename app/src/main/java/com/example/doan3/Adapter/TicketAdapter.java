@@ -18,14 +18,12 @@ import java.util.ArrayList;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
     private Context context;
-    private Session session;
 
     private ArrayList<TicketNomal> arr_tikket;
 
     public TicketAdapter(Context context, ArrayList<TicketNomal> arr_tikket) {
         this.context = context;
         this.arr_tikket = arr_tikket;
-        session = new Session();
     }
     double price;
 
@@ -36,11 +34,11 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         View view = layoutInflater.inflate(R.layout.recyclethanhticket, parent, false);
         return new ViewHolder(view);
     }
-    Intent intent=new Intent(context, ChooseTicket.class);
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TicketNomal ticket = arr_tikket.get(position);
         holder.txtNameAirplane.setText(ticket.getNamePlane());
+
 
         holder.txtprice.setText(String.format("%,.0f VNĐ", ticket.getPrice()));
         holder.txtprice1.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 100000));
@@ -55,32 +53,65 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         holder.btnchoose1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(context, ChooseTicket.class);
                 toggleButton(holder.btnchoose1);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose3);
-                intent.putExtra("Price",ticket.getPrice());
+                intent.putExtra("Price", String.format("%,.0f VNĐ", ticket.getPrice()));
+                intent.putExtra("dateDepart",ticket.getDateDepart());
+                intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
+                intent.putExtra("departPlace",ticket.getDepartPlace());
+                intent.putExtra("namePlane",ticket.getNamePlane());
+                intent.putExtra("time",ticket.getTime());
+                context.startActivity(intent);
             }
         });
 
         holder.btnchoose2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(context, ChooseTicket.class);
                 toggleButton(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
                 toggleButton2(holder.btnchoose3);
-                intent.putExtra("ticket_price", String.format("%,.0f VNĐ", ticket.getPrice() + 100000));
+                intent.putExtra("Price", String.format("%,.0f VNĐ", ticket.getPrice() + 100000));
+                intent.putExtra("dateDepart",ticket.getDateDepart());
+                intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
+                intent.putExtra("departPlace",ticket.getDepartPlace());
+                intent.putExtra("namePlane",ticket.getNamePlane());
+                intent.putExtra("time",ticket.getTime());
+                context.startActivity(intent);
             }
         });
 
         holder.btnchoose3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(context, ChooseTicket.class);
                 toggleButton(holder.btnchoose3);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
-                intent.putExtra("ticket_price", String.format("%,.0f VNĐ", ticket.getPrice() + 200000));
+                intent.putExtra("Price", String.format("%,.0f VNĐ", ticket.getPrice() + 370000));
+                intent.putExtra("dateDepart",ticket.getDateDepart());
+                intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
+                intent.putExtra("departPlace",ticket.getDepartPlace());
+                intent.putExtra("namePlane",ticket.getNamePlane());
+                intent.putExtra("time",ticket.getTime());
+                context.startActivity(intent);
             }
         });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(context, ChooseTicket.class);
+//                intent.putExtra("dateDepart",ticket.getDateDepart());
+//                intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
+//                intent.putExtra("departPlace",ticket.getDepartPlace());
+//                intent.putExtra("namePlane",ticket.getNamePlane());
+//                intent.putExtra("time",ticket.getTime());
+//                context.startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -115,19 +146,19 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtNameAirplane = itemView.findViewById(R.id.txtnameAirplane);
+            txtNameAirplane = itemView.findViewById(R.id.txtnameAirplanepay);
             txtprice = itemView.findViewById(R.id.txtprice);
-            txtdeparture = itemView.findViewById(R.id.txtdeparture);
-            txttime = itemView.findViewById(R.id.txttime);
-            txtdate = itemView.findViewById(R.id.txtdate);
-            txtdestination = itemView.findViewById(R.id.txtdestination);
+            txtdeparture = itemView.findViewById(R.id.tvdepartPlacepay);
+            txttime = itemView.findViewById(R.id.tvtimepay);
+            txtdate = itemView.findViewById(R.id.tvDatepay);
+            txtdestination = itemView.findViewById(R.id.tvarrivalPlacepay);
             txtprice1 = itemView.findViewById(R.id.txtprice1);
             txtprice2 = itemView.findViewById(R.id.txtprice2);
             txtdate1 = itemView.findViewById(R.id.txtdate1);
             btnchoose1 = itemView.findViewById(R.id.btnchoose1);
             btnchoose2 = itemView.findViewById(R.id.btnchoose2);
             btnchoose3 = itemView.findViewById(R.id.btnchoose3);
-            txttotalprice=itemView.findViewById(R.id.txttotalprice);
+            txttotalprice=itemView.findViewById(R.id.tvtotalprice);
         }
     }
 }

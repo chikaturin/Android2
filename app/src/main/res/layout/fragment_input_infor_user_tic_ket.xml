@@ -30,6 +30,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tvpriceinfor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="8,776,000 VND"
@@ -73,11 +74,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@drawable/underline"
                         android:orientation="horizontal"
                         android:paddingLeft="5dp"
                         android:paddingTop="10dp"
-                        android:paddingRight="5dp">
+                        android:paddingRight="5dp"
+                        android:paddingBottom="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -106,11 +108,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@drawable/underline"
                         android:orientation="horizontal"
                         android:paddingLeft="5dp"
                         android:paddingTop="5dp"
-                        android:paddingRight="5dp">
+                        android:paddingRight="5dp"
+                        android:paddingBottom="10dp">
 
                         <LinearLayout
                             android:layout_width="206dp"
@@ -131,7 +134,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="5dp"
-                                android:text="Họ" />
+                                android:text="Họ"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tvlastname"
@@ -152,7 +157,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:paddingLeft="5dp"
-                                android:text="Tên" />
+                                android:text="Tên"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tvFirstName"
@@ -186,7 +193,9 @@
                             android:id="@+id/tvbirthday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/underline"
                             android:ems="10"
+                            android:paddingBottom="10dp"
                             android:textSize="20sp" />
 
                         <TextView
@@ -202,8 +211,10 @@
                             android:id="@+id/tvphone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/underline"
                             android:ems="10"
                             android:inputType="number"
+                            android:paddingBottom="10dp"
                             android:textSize="20sp" />
                     </LinearLayout>
 
@@ -228,18 +239,24 @@
                             android:id="@+id/textView31"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Loại giấy tờ tùy thân" />
+                            android:text="Loại giấy tờ tùy thân"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvpersonal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/underline"
+                            android:paddingBottom="10dp"
                             android:textSize="20sp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Quốc tịch/Vùng" />
+                            android:text="Quốc tịch/Vùng"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvPlace"

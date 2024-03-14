@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvdateDepart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.Pay_Fragment">
@@ -23,21 +24,26 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tổng cộng" />
+                android:text="Tổng cộng"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvpricepay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="8,776,000 VND"
                 android:textColor="#FFC107"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView34"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="giá chưa bao gồm thuế" />
+                android:text="giá chưa bao gồm thuế"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +70,7 @@
                     android:layout_width="373dp"
                     android:layout_height="wrap_content"
                     android:text="Thông tin chuyến bay"
-                    android:textSize="15sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -75,14 +81,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtdate"
+                    android:id="@+id/tvDatepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="22/02/2024"
-                    android:textColor="#959595" />
+                    android:textColor="#959595"
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/txttime"
+                    android:id="@+id/tvtimepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="23:00"
@@ -90,12 +97,13 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtdeparture"
+                    android:id="@+id/tvdepartPlacepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="SGN"
-                    android:textColor="#959595" />
+                    android:textColor="#959595"
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -113,11 +121,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Bay thẳng"
-                    android:textSize="11dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -126,7 +134,7 @@
                         android:id="@+id/textView36"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="----------------------------" />
+                        android:text="-------------------------------------" />
 
                     <ImageView
                         android:id="@+id/imageView9"
@@ -142,17 +150,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|center_vertical"
-                    android:text="2 tiếng 20 phút"
                     android:textSize="11dp" />
 
                 <TextView
-                    android:id="@+id/txtnameAirplane"
+                    android:id="@+id/txtnameAirplanepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:text="VN270/Airbus A321"
-                    android:textSize="12dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -164,23 +171,28 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvDate2pay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="23/02/2024"
-                    android:textColor="#959595" />
+                    android:textColor="#959595"
+                    android:textSize="16dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="01:20"
-                    android:textSize="25dp" />
+                    android:text="Null"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtdestination"
+                    android:id="@+id/tvarrivalPlacepay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="HAN" />
+                    android:text="HAN"
+                    android:textColor="#959595"
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -189,7 +201,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="198dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/baseline_attach_money_24" />
@@ -198,7 +210,7 @@
                     android:layout_width="373dp"
                     android:layout_height="wrap_content"
                     android:text="Chi tiết giá vé"
-                    android:textSize="15sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -216,15 +228,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Giá vé"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvpricepay1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="8,776,000 VND"
                         android:textColor="#FFC107"
-                        android:textSize="14sp" />
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -237,6 +252,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Số lượng"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -249,12 +265,13 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvpricepay2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="8,776,000 VND/Vé"
                         android:textColor="#FFC107"
-                        android:textSize="14sp" />
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 

@@ -23,15 +23,40 @@ public class ChooseTicket extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_ticket);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fmticket1, NomalTicket.class,null);
-//        String testa=getIntent().getStringExtra("Price");
-//        test=findViewById(R.id.testactivity);
-//        test.setText(testa);
 
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_choose_ticket);
+
+        String price = getIntent().getStringExtra("Price");
+        String dateDepart=getIntent().getStringExtra("dateDepart");
+        String arrivalPlace=getIntent().getStringExtra("arrivalPlace");
+        String departPlace=getIntent().getStringExtra("departPlace");
+        String namePlane=getIntent().getStringExtra("namePlane");
+        String time=getIntent().getStringExtra("time");
+
+        NomalTicket nomalTicket = new NomalTicket();
+        Pay_Fragment payFragment=new Pay_Fragment();
+        InputInforUserTicKet inputInforUserTicKet=new InputInforUserTicKet();
+
+
+
+        Bundle bundle = new Bundle();
+
+        bundle.putString("dateDepart",dateDepart);
+        bundle.putString("arrivalPlace",arrivalPlace);
+        bundle.putString("departPlace",departPlace);
+        bundle.putString("namePlane",namePlane);
+        bundle.putString("time",time);
+        bundle.putString("Price",price);
+
+        nomalTicket.setArguments(bundle);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.add(R.id.fmticket1, nomalTicket);
         transaction.commit();
+
         btnback=findViewById(R.id.btnbackinticket);
         btnout=findViewById(R.id.outinput);
         btnback.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +68,7 @@ public class ChooseTicket extends AppCompatActivity {
                 }
                 else if (currentFragment instanceof InputInforUserTicKet) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fmticket1, NomalTicket.class,null);
+                    transaction.replace(R.id.fmticket1, nomalTicket);
                     transaction.commit();
                     img1.setBackgroundResource(R.drawable.circle);
                     img2.setBackgroundResource(R.drawable.circle_gray);
@@ -52,7 +77,7 @@ public class ChooseTicket extends AppCompatActivity {
 
                 else if (currentFragment instanceof Pay_Fragment) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fmticket1, InputInforUserTicKet.class,null);
+                    transaction.replace(R.id.fmticket1,inputInforUserTicKet);
                     transaction.commit();
                     img1.setBackgroundResource(R.drawable.circle_gray);
                     img2.setBackgroundResource(R.drawable.circle);

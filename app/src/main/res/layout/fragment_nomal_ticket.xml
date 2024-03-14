@@ -100,7 +100,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="219dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
@@ -113,7 +113,7 @@
                         android:text="Tổng số tiền" />
 
                     <TextView
-                        android:id="@+id/txttotalprice"
+                        android:id="@+id/tvtotalprice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -121,13 +121,6 @@
                         android:textSize="20dp"
                         android:textStyle="bold" />
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/txttest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Chi tiết chuyến bay  v" />
 
             </LinearLayout>
 
