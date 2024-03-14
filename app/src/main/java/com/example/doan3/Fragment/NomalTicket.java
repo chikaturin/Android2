@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.doan3.Adapter.Session;
 import com.example.doan3.Adapter.TicketAdapter;
 import com.example.doan3.ChooseTicket;
 import com.example.doan3.Model.TicketNomal;
@@ -33,7 +34,9 @@ import java.util.ArrayList;
  * Use the {@link NomalTicket#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NomalTicket extends Fragment {
+public class NomalTicket extends Fragment  {
+    Session session;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -107,10 +110,9 @@ public class NomalTicket extends Fragment {
         arr_ticket = new ArrayList<>();
         ticketAdapter = new TicketAdapter(getActivity(), arr_ticket);
         recyclerView.setAdapter(ticketAdapter);
-        txtTotalPrice = view.findViewById(R.id.txttotalprice);
-        txtTotalPrice.setText("0");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
+
 
 
 
@@ -133,12 +135,10 @@ public class NomalTicket extends Fragment {
                 chooseAirlineTicketsActivity.ChangeColor(R.drawable.circle_gray,R.drawable.circle,R.drawable.circle_gray);
             }
         });
-        Txttotalprice=view.findViewById(R.id.txttotalprice);
-        txttongtien= (TextView) view.findViewById(R.id.tongtien);
         return view;}
     LinearLayout nomalticket,vipticket,lnmain;
     Color color;
-    TextView text,text1,text2,text3,Txttotalprice,txttongtien;
+    TextView text,text1,text2,text3,Txttotalprice;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -181,4 +181,5 @@ public class NomalTicket extends Fragment {
             });
         }
     }
+
 }

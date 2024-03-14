@@ -67,13 +67,6 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/outinput"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="right"
-                    android:layout_marginLeft="20dp"
-                    app:srcCompat="@drawable/baseline_cancel_24" />
             </LinearLayout>
 
             <LinearLayout
@@ -248,6 +241,7 @@
                 android:padding="10dp">
 
                 <Button
+                    android:id="@+id/outinput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
@@ -267,11 +261,9 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView28"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
                 android:gravity="center|center_horizontal|center_vertical"
-                android:text="Xoá thông tin để nhập lại từ đầu"
                 android:textColor="#DC3636" />
         </LinearLayout>
     </RelativeLayout>

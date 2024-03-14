@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.doan3.Fragment.InputInforUserTicKet;
 import com.example.doan3.Fragment.NomalTicket;
@@ -16,6 +17,7 @@ import com.example.doan3.Fragment.Pay_Fragment;
 public class ChooseTicket extends AppCompatActivity {
 
     Fragment fragment;
+    TextView test;
     Button btnback,btnout;
     ImageView img1,img2,img3;
 
@@ -25,9 +27,13 @@ public class ChooseTicket extends AppCompatActivity {
         setContentView(R.layout.activity_choose_ticket);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fmticket1, NomalTicket.class,null);
+//        String testa=getIntent().getStringExtra("Price");
+//        test=findViewById(R.id.testactivity);
+//        test.setText(testa);
+
         transaction.commit();
         btnback=findViewById(R.id.btnbackinticket);
-        btnout=findViewById(R.id.btnout);
+        btnout=findViewById(R.id.outinput);
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

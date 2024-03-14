@@ -53,7 +53,7 @@ public class InputInforUserTicKet extends Fragment {
     LinearLayout btnbuttonsheet;
     LinearLayout show,hide;
     Button btnpay,btnadd;
-    ImageView btnoutinput;
+    Button btnoutinput;
     EditText Lastname,Fistname,DateOfBirth,NumberPhone,Place;
     TextView tvLastname,tvFistname,tvDateOfBirth,tvNumberPhone,tvPlace,tvgender,tvpersonal;
 
@@ -120,7 +120,7 @@ public class InputInforUserTicKet extends Fragment {
                 firebase();
                 show.setVisibility(view.INVISIBLE);
                 hide.setVisibility(view.VISIBLE);
-
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 appearinforuser();
 
             }
