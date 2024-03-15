@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.doan3.R;
@@ -57,6 +58,7 @@ public class Pay_Fragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    Button bntPay;
     TextView tvtimeArrival,tvprice,tvprice1,tvprice2,tvtime,tvdepartDate,tvdepartPlace,tvnameplane,tvarrivalPlace,tvdepartDate1;
 
     @Override
@@ -84,6 +86,7 @@ public class Pay_Fragment extends Fragment {
             tvnameplane=view.findViewById(R.id.txtnameAirplanepay);
             tvarrivalPlace=view.findViewById(R.id.tvarrivalPlacepay);
             tvtimeArrival=view.findViewById(R.id.timeArrivalpay);
+            bntPay=view.findViewById(R.id.btnpayticket);
 
             tvprice.setText(price);
             tvprice1.setText(price);
@@ -95,6 +98,12 @@ public class Pay_Fragment extends Fragment {
             tvnameplane.setText(namePlane);
             tvdepartPlace.setText(departPlace);
             tvtimeArrival.setText(timeArrival);
+            bntPay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Trả về trang home
+                }
+            });
         }
         return view;    }
 }

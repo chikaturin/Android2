@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.doan3.Adapter.Session;
 import com.example.doan3.Adapter.TicketAdapter;
 import com.example.doan3.ChooseTicket;
 import com.example.doan3.Model.TicketNomal;
@@ -35,7 +34,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class NomalTicket extends Fragment  {
-    Session session;
+
 
 
     // TODO: Rename parameter arguments, choose names that match

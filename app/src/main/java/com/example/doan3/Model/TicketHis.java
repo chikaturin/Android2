@@ -1,35 +1,30 @@
 package com.example.doan3.Model;
 
 import java.io.Serializable;
-import java.util.Date;
 
-public class TicketNomal implements Serializable {
+public class TicketHis implements Serializable {
     private String namePlane;
     private String dateDepart;
     private String time;
     private String arrivalPlace;
     private String departPlace;
     private int price;
-    private int price1;
-    private float price2;
     private  String code;
 
 
     private String timeArrival;
 
 
-    public TicketNomal() {
+    public TicketHis() {
     }
 
-    public TicketNomal(String namePlane, String dateDepart, String time, String arrivalPlace, String departPlace, int price, int price1, float price2, String code, String timeArrival) {
+    public TicketHis(String namePlane, String dateDepart, String time, String arrivalPlace, String departPlace, int price, String code, String timeArrival) {
         this.namePlane = namePlane;
         this.dateDepart = dateDepart;
         this.time = time;
         this.arrivalPlace = arrivalPlace;
         this.departPlace = departPlace;
         this.price = price;
-        this.price1 = price1;
-        this.price2 = price2;
         this.code = code;
         this.timeArrival = timeArrival;
     }
@@ -98,19 +93,4 @@ public class TicketNomal implements Serializable {
         this.price = price;
     }
 
-    public float getPrice1() {
-        return price1;
-    }
-
-    public void setPrice1(int price1) {
-        this.price1 = price1;
-    }
-
-    public float getPrice2() {
-        return price2;
-    }
-
-    public void setPrice2(float price2) {
-        this.price2 = price2;
-    }
 }

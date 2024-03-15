@@ -281,14 +281,14 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btninforuser"
+            android:id="@+id/btnpayticket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/radiusbutton2"
-            android:text="Thanh toán"
+            android:text="Thanh toán vé"
             app:backgroundTint="@null" />
 
     </LinearLayout>

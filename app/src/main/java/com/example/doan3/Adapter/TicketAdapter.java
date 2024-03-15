@@ -25,8 +25,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         this.context = context;
         this.arr_tikket = arr_tikket;
     }
-    double price;
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

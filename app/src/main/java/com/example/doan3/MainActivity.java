@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
         btnAirplane1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test();
+                Intent intent = new Intent(MainActivity.this, History.class);
+                startActivity(intent);
             }
         });
     }
