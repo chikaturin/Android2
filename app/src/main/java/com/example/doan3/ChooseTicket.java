@@ -35,6 +35,7 @@ public class ChooseTicket extends AppCompatActivity {
         String namePlane=getIntent().getStringExtra("namePlane");
         String time=getIntent().getStringExtra("time");
         String timeArrival=getIntent().getStringExtra("timeArrival");
+        String code=getIntent().getStringExtra("code");
 
         NomalTicket nomalTicket = new NomalTicket();
         Pay_Fragment payFragment=new Pay_Fragment();
@@ -51,6 +52,7 @@ public class ChooseTicket extends AppCompatActivity {
         bundle.putString("time",time);
         bundle.putString("Price",price);
         bundle.putString("timeArrival",timeArrival);
+        bundle.putString("code",code);
 
 
         nomalTicket.setArguments(bundle);

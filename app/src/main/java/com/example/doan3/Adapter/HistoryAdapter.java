@@ -38,6 +38,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.tvdateDeparthis.setText(ticket.getDateDepart());
         holder.tvarrivalPlaceHis.setText(ticket.getArrivalPlace());
         holder.tvdepartPlacehis.setText(ticket.getDepartPlace());
+        holder.tvfirstnamehis.setText(ticket.getFirstnameHis());
+        holder.tvlastnamehis.setText(ticket.getLastnameHis());
+        holder.tvprice.setText(ticket.getPrice());
+        holder.tvcodehis.setText(ticket.getCode_History());
     }
 
 
@@ -49,7 +53,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvdepartPlacehis,tvarrivalPlaceHis,tvdateDeparthis,tvtimehis,tvnamePlanehis,tvcodeAirplan;
+        TextView tvcodehis,tvdepartPlacehis,tvarrivalPlaceHis,tvdateDeparthis,tvtimehis,tvnamePlanehis,tvcodeAirplan,tvlastnamehis,tvfirstnamehis,tvprice;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvdepartPlacehis=itemView.findViewById(R.id.departPlacehistory);
@@ -58,6 +62,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             tvtimehis=itemView.findViewById(R.id.timeHistory);
             tvnamePlanehis=itemView.findViewById(R.id.namePlaneHistory);
             tvcodeAirplan=itemView.findViewById(R.id.codeAirplaneHistory);
+            tvlastnamehis=itemView.findViewById(R.id.tvlastnamehis);
+            tvfirstnamehis=itemView.findViewById(R.id.tvFirstNamehis);
+            tvprice=itemView.findViewById(R.id.tvpriceHis);
+            tvcodehis=itemView.findViewById(R.id.tvcodehis);
         }
     }
 }

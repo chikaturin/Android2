@@ -47,6 +47,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         holder.txtdate1.setText(ticket.getDateDepart() + " ");
         holder.txtdestination.setText(ticket.getArrivalPlace());
         holder.timeArrival.setText(ticket.getTimeArrival());
+        holder.txtcode.setText(ticket.getCode());
 
 
         holder.btnchoose1.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +64,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("namePlane",ticket.getNamePlane());
                 intent.putExtra("time",ticket.getTime());
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
+                intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
             }
         });
@@ -80,6 +82,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("departPlace",ticket.getDepartPlace());
                 intent.putExtra("namePlane",ticket.getNamePlane());
                 intent.putExtra("time",ticket.getTime());
+                intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
             }
         });
@@ -97,6 +100,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("departPlace",ticket.getDepartPlace());
                 intent.putExtra("namePlane",ticket.getNamePlane());
                 intent.putExtra("time",ticket.getTime());
+                intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
             }
         });
@@ -130,7 +134,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         Button btnchoose1, btnchoose2, btnchoose3;
-        TextView txtdate1,timeArrival, txtNameAirplane, txtprice, txtdeparture, txttime, txtdate, txtdestination, txtprice1, txtprice2,txttotalprice;
+        TextView txtcode,txtdate1,timeArrival, txtNameAirplane, txtprice, txtdeparture, txttime, txtdate, txtdestination, txtprice1, txtprice2,txttotalprice;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -148,6 +152,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             btnchoose3 = itemView.findViewById(R.id.btnchoose3);
             txttotalprice=itemView.findViewById(R.id.tvtotalprice);
             timeArrival=itemView.findViewById(R.id.timeArrival);
+            txtcode=itemView.findViewById(R.id.txtcode);
         }
     }
 }

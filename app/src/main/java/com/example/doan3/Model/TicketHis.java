@@ -8,17 +8,12 @@ public class TicketHis implements Serializable {
     private String time;
     private String arrivalPlace;
     private String departPlace;
-    private int price;
+    private String price;
     private  String code;
 
+    private  String code_History;
 
-    private String timeArrival;
-
-
-    public TicketHis() {
-    }
-
-    public TicketHis(String namePlane, String dateDepart, String time, String arrivalPlace, String departPlace, int price, String code, String timeArrival) {
+    public TicketHis(String namePlane, String dateDepart, String time, String arrivalPlace, String departPlace, String price, String code, String code_History, String firstnameHis, String lastnameHis, String timeArrival) {
         this.namePlane = namePlane;
         this.dateDepart = dateDepart;
         this.time = time;
@@ -26,7 +21,44 @@ public class TicketHis implements Serializable {
         this.departPlace = departPlace;
         this.price = price;
         this.code = code;
+        this.code_History = code_History;
+        this.firstnameHis = firstnameHis;
+        this.lastnameHis = lastnameHis;
         this.timeArrival = timeArrival;
+    }
+
+    public String getCode_History() {
+        return code_History;
+    }
+
+    public void setCode_History(String code_History) {
+        this.code_History = code_History;
+    }
+    private  String firstnameHis;
+    private  String lastnameHis;
+
+    private String timeArrival;
+
+
+
+    public TicketHis() {
+    }
+
+
+    public String getFirstnameHis() {
+        return firstnameHis;
+    }
+
+    public void setFirstnameHis(String firstnameHis) {
+        this.firstnameHis = firstnameHis;
+    }
+
+    public String getLastnameHis() {
+        return lastnameHis;
+    }
+
+    public void setLastnameHis(String lastnameHis) {
+        this.lastnameHis = lastnameHis;
     }
 
     public String getCode() {
@@ -85,11 +117,11 @@ public class TicketHis implements Serializable {
         this.departPlace = departPlace;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

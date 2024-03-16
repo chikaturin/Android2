@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tvdateDepart"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Fragment.Pay_Fragment">
 
     <LinearLayout
@@ -152,15 +152,31 @@
                     android:gravity="center|center_vertical"
                     android:textSize="11dp" />
 
-                <TextView
-                    android:id="@+id/txtnameAirplanepay"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:gravity="center"
-                    android:text="VN270/Airbus A321"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtcodepay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtnameAirplanepay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="VN270/Airbus A321"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </LinearLayout>
 

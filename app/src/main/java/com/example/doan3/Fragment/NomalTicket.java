@@ -127,6 +127,7 @@ public class NomalTicket extends Fragment  {
             String namePlane = getArguments().getString("namePlane");
             String time = getArguments().getString("time");
             String timeArrival = getArguments().getString("timeArrival");
+            String code = getArguments().getString("code");
 
             txttottalprice=view.findViewById(R.id.tvtotalprice);
             txttottalprice.setText(price);
@@ -139,6 +140,7 @@ public class NomalTicket extends Fragment  {
             bundle.putString("namePlane",namePlane);
             bundle.putString("time",time);
             bundle.putString("timeArrival",timeArrival);
+            bundle.putString("code",code);
 
             inputInforUserTicKet.setArguments(bundle);
         }

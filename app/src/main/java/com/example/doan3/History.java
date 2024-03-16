@@ -13,10 +13,14 @@ public class History extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+
         HistoryFragment historyFragment=new HistoryFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.add(R.id.fragmenthis, historyFragment);
         transaction.commit();
+
+
     }
 }

@@ -1,7 +1,12 @@
 package com.example.doan3.Fragment;
 
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,8 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.doan3.History;
+import com.example.doan3.MainActivity;
+import com.example.doan3.Model.InforUserTicket;
+import com.example.doan3.Model.TicketHis;
 import com.example.doan3.R;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +75,7 @@ public class Pay_Fragment extends Fragment {
         }
     }
     Button bntPay;
-    TextView tvtimeArrival,tvprice,tvprice1,tvprice2,tvtime,tvdepartDate,tvdepartPlace,tvnameplane,tvarrivalPlace,tvdepartDate1;
+    TextView tvcode,tvtimeArrival,tvprice,tvprice1,tvprice2,tvtime,tvdepartDate,tvdepartPlace,tvnameplane,tvarrivalPlace,tvdepartDate1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,6 +91,10 @@ public class Pay_Fragment extends Fragment {
             String namePlane = getArguments().getString("namePlane");
             String time = getArguments().getString("time");
             String timeArrival = getArguments().getString("timeArrival");
+            String tvLastname = getArguments().getString("tvLastname");
+            String tvFistname = getArguments().getString("tvFistname");
+            String code = getArguments().getString("code");
+
 
             tvprice=view.findViewById(R.id.tvpricepay);
             tvprice1=view.findViewById(R.id.tvpricepay1);
@@ -87,10 +107,11 @@ public class Pay_Fragment extends Fragment {
             tvarrivalPlace=view.findViewById(R.id.tvarrivalPlacepay);
             tvtimeArrival=view.findViewById(R.id.timeArrivalpay);
             bntPay=view.findViewById(R.id.btnpayticket);
+            tvcode=view.findViewById(R.id.txtcodepay);
 
             tvprice.setText(price);
-            tvprice1.setText(price);
-            tvprice2.setText(price+"/Vé");
+            tvprice1.setText(price+"/Vé");
+            tvprice2.setText(price);
             tvtime.setText(time);
             tvdepartDate.setText(dateDepart);
             tvdepartDate1.setText(dateDepart);
@@ -98,12 +119,35 @@ public class Pay_Fragment extends Fragment {
             tvnameplane.setText(namePlane);
             tvdepartPlace.setText(departPlace);
             tvtimeArrival.setText(timeArrival);
+            tvcode.setText(code+" ~ ");
             bntPay.setOnClickListener(new View.OnClickListener() {
+                int i=0;
                 @Override
+//                namePlane,dateDepart,time,arrivalPlace,departPlace,price,"",tvFistname,tvLastname,timeArrival
                 public void onClick(View v) {
-                    //Trả về trang home
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference historyRef = database.getReference("History");
+
+                    Map<String, Object> history = new HashMap<>();
+                    history.put("price", price);
+                    history.put("dateDepart", dateDepart);
+                    history.put("arrivalPlace", arrivalPlace);
+                    history.put("departPlace", departPlace);
+                    history.put("namePlane", namePlane);
+                    history.put("time", time);
+                    history.put("timeArrival", timeArrival);
+                    history.put("firstnameHis", tvLastname);
+                    history.put("lastnameHis", tvFistname);
+                    history.put("code_History","HIS"+i);
+                    history.put("code",code);
+                    i++;
+                    historyRef.push().setValue(history);
+                    Activity activity=new Activity();
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    activity.finish();
                 }
             });
         }
-        return view;    }
+        return view;
+    }
 }

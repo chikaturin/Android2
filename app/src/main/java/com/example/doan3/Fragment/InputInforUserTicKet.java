@@ -63,6 +63,8 @@ public class    InputInforUserTicKet extends Fragment {
     TextView DateOfBirth, tvLastname, tvprice, tvFistname, tvDateOfBirth, tvNumberPhone, tvPlace, tvgender, tvpersonal;
 
     private BottomSheetBehavior bottomSheetBehavior;
+    Pay_Fragment payFragment = new Pay_Fragment();
+
 
     /**
      * Use this factory method to create a new instance of
@@ -114,32 +116,9 @@ public class    InputInforUserTicKet extends Fragment {
                 birthday();
             }
         });
-        Pay_Fragment payFragment = new Pay_Fragment();
-        if (view != null) {
-            String price = getArguments().getString("Price");
-            String dateDepart = getArguments().getString("dateDepart");
-            String arrivalPlace = getArguments().getString("arrivalPlace");
-            String departPlace = getArguments().getString("departPlace");
-            String namePlane = getArguments().getString("namePlane");
-            String time = getArguments().getString("time");
-            String timeArrival = getArguments().getString("timeArrival");
-
-
-            tvprice = view.findViewById(R.id.tvpriceinfor);
-            tvprice.setText(price);
-
-            Bundle bundle = new Bundle();
-
-            bundle.putString("Price", price);
-            bundle.putString("dateDepart", dateDepart);
-            bundle.putString("arrivalPlace", arrivalPlace);
-            bundle.putString("departPlace", departPlace);
-            bundle.putString("namePlane", namePlane);
-            bundle.putString("time", time);
-            bundle.putString("timeArrival", timeArrival);
-
-            payFragment.setArguments(bundle);
-        }
+        String price = getArguments().getString("Price");
+        tvprice = view.findViewById(R.id.tvpriceinfor);
+        tvprice.setText(price);
 
         tvLastname = view.findViewById(R.id.tvlastname);
         tvFistname = view.findViewById(R.id.tvFirstName);
@@ -151,6 +130,7 @@ public class    InputInforUserTicKet extends Fragment {
 
         btnadd = view.findViewById(R.id.btnAdd);
         hide.setVisibility(view.INVISIBLE);
+        final boolean[] isInformationAdded = new boolean[1];
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,6 +144,7 @@ public class    InputInforUserTicKet extends Fragment {
                     show.setVisibility(view.INVISIBLE);
                     hide.setVisibility(view.VISIBLE);
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    isInformationAdded[0] = true;
                     appearinforuser();
                 }
 
@@ -175,6 +156,10 @@ public class    InputInforUserTicKet extends Fragment {
         btnpay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!isInformationAdded[0]) {
+                    Toast.makeText(getActivity(), "Vui lòng nhập thông tin trước khi thanh toán", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.fmticket1, payFragment);
                 transaction.commit();
@@ -223,7 +208,6 @@ public class    InputInforUserTicKet extends Fragment {
             }
         }
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        // Tạo một đối tượng user chứa thông tin người dùng
         Map<String, Object> InforUserTicket = new HashMap<>();
         InforUserTicket.put("firstName", Fistname.getText().toString().trim());
         InforUserTicket.put("lastName", Lastname.getText().toString().trim());
@@ -257,6 +241,33 @@ public class    InputInforUserTicKet extends Fragment {
                 tvgender.setText(gender);
                 tvPlace.setText(place);
                 tvpersonal.setText(personal);
+
+                //
+                String price = getArguments().getString("Price");
+                String dateDepart = getArguments().getString("dateDepart");
+                String arrivalPlace = getArguments().getString("arrivalPlace");
+                String departPlace = getArguments().getString("departPlace");
+                String namePlane = getArguments().getString("namePlane");
+                String time = getArguments().getString("time");
+                String timeArrival = getArguments().getString("timeArrival");
+                String code = getArguments().getString("code");
+
+
+                Bundle bundle = new Bundle();
+
+                bundle.putString("Price", price);
+                bundle.putString("dateDepart", dateDepart);
+                bundle.putString("arrivalPlace", arrivalPlace);
+                bundle.putString("departPlace", departPlace);
+                bundle.putString("namePlane", namePlane);
+                bundle.putString("time", time);
+                bundle.putString("timeArrival", timeArrival);
+                bundle.putString("tvLastname",Lastname.getText().toString());
+                bundle.putString("tvFistname",Fistname.getText().toString());
+                bundle.putString("code",code);
+
+                payFragment.setArguments(bundle);
+                //
             }
 
             @Override
