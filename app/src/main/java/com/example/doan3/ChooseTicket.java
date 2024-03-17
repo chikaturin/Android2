@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,9 @@ public class ChooseTicket extends AppCompatActivity {
         String time=getIntent().getStringExtra("time");
         String timeArrival=getIntent().getStringExtra("timeArrival");
         String code=getIntent().getStringExtra("code");
+        String toggleButton1_state=getIntent().getStringExtra("toggleButton1_state");
+        String toggleButton2_state=getIntent().getStringExtra("toggleButton2_state");
+        String toggleButton3_state=getIntent().getStringExtra("toggleButton3_state");
 
         NomalTicket nomalTicket = new NomalTicket();
         Pay_Fragment payFragment=new Pay_Fragment();
@@ -53,6 +57,9 @@ public class ChooseTicket extends AppCompatActivity {
         bundle.putString("Price",price);
         bundle.putString("timeArrival",timeArrival);
         bundle.putString("code",code);
+        bundle.putString("toggleButton1_state",toggleButton1_state);
+        bundle.putString("toggleButton2_state",toggleButton2_state);
+        bundle.putString("toggleButton3_state",toggleButton3_state);
 
 
         nomalTicket.setArguments(bundle);
@@ -69,7 +76,8 @@ public class ChooseTicket extends AppCompatActivity {
             public void onClick(View view) {
                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fmticket1);
                 if (currentFragment instanceof NomalTicket) {
-                    finish();
+                    Intent intent = new Intent(ChooseTicket.this, MainActivity.class);
+                    startActivity(intent);
                 }
                 else if (currentFragment instanceof InputInforUserTicKet) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -101,7 +109,8 @@ public class ChooseTicket extends AppCompatActivity {
         btnout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(ChooseTicket.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
