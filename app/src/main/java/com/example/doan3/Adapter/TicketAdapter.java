@@ -42,7 +42,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         holder.txtprice1.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 100000));
         holder.txtprice2.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 370000));
         holder.txtdeparture.setText(ticket.getDepartPlace());
-        holder.txttime.setText(ticket.getTime());
+        holder.txttime.setText(ticket.getTimeDepart());
         holder.txtdate.setText(ticket.getDateDepart() + " ");
         holder.txtdate1.setText(ticket.getDateDepart() + " ");
         holder.txtdestination.setText(ticket.getArrivalPlace());
@@ -62,7 +62,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
                 intent.putExtra("departPlace",ticket.getDepartPlace());
                 intent.putExtra("namePlane",ticket.getNamePlane());
-                intent.putExtra("time",ticket.getTime());
+                intent.putExtra("time",ticket.getTimeDepart());
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
@@ -81,7 +81,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
                 intent.putExtra("departPlace",ticket.getDepartPlace());
                 intent.putExtra("namePlane",ticket.getNamePlane());
-                intent.putExtra("time",ticket.getTime());
+                intent.putExtra("time",ticket.getTimeDepart());
                 intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
             }
@@ -99,7 +99,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
                 intent.putExtra("departPlace",ticket.getDepartPlace());
                 intent.putExtra("namePlane",ticket.getNamePlane());
-                intent.putExtra("time",ticket.getTime());
+                intent.putExtra("time",ticket.getTimeDepart());
                 intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
             }

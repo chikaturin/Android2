@@ -6,7 +6,7 @@ import java.util.Date;
 public class TicketNomal implements Serializable {
     private String namePlane;
     private String dateDepart;
-    private String time;
+    private String timeDepart;
     private String arrivalPlace;
     private String departPlace;
     private int price;
@@ -24,7 +24,7 @@ public class TicketNomal implements Serializable {
     public TicketNomal(String namePlane, String dateDepart, String time, String arrivalPlace, String departPlace, int price, int price1, float price2, String code, String timeArrival) {
         this.namePlane = namePlane;
         this.dateDepart = dateDepart;
-        this.time = time;
+        this.timeDepart = time;
         this.arrivalPlace = arrivalPlace;
         this.departPlace = departPlace;
         this.price = price;
@@ -49,12 +49,12 @@ public class TicketNomal implements Serializable {
     public void setTimeArrival(String timeArrival) {
         this.timeArrival = timeArrival;
     }
-    public String getTime() {
-        return time;
+    public String getTimeDepart() {
+        return timeDepart;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTimeDepart(String time) {
+        this.timeDepart = time;
     }
 
     public String getNamePlane() {
