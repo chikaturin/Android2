@@ -39,8 +39,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
 
         holder.txtprice.setText(String.format("%,.0f VNĐ", ticket.getPrice()));
-        holder.txtprice1.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 100000));
-        holder.txtprice2.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 370000));
+        holder.txtprice1.setText(String.format("%,.0f VNĐ", ticket.getPrice() + 1050000));
+        holder.txtprice2.setText(String.format("%,.0f VNĐ", ticket.getPrice() + +1270000));
         holder.txtdeparture.setText(ticket.getDepartPlace());
         holder.txttime.setText(ticket.getTimeDepart());
         holder.txtdate.setText(ticket.getDateDepart() + " ");
@@ -76,12 +76,13 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
                 toggleButton2(holder.btnchoose3);
-                intent.putExtra("Price", String.format("%,.0f VNĐ", ticket.getPrice() + 100000));
+                intent.putExtra("Price", String.format("%,.0f VNĐ", ticket.getPrice()+1050000));
                 intent.putExtra("dateDepart",ticket.getDateDepart());
                 intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
                 intent.putExtra("departPlace",ticket.getDepartPlace());
                 intent.putExtra("namePlane",ticket.getNamePlane());
                 intent.putExtra("time",ticket.getTimeDepart());
+                intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
             }
@@ -94,12 +95,13 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 toggleButton(holder.btnchoose3);
                 toggleButton2(holder.btnchoose2);
                 toggleButton2(holder.btnchoose1);
-                intent.putExtra("Price", String.format("%,.0f VNĐ", ticket.getPrice() + 370000));
+                intent.putExtra("Price", String.format("%,.0f VNĐ", ticket.getPrice()+1270000));
                 intent.putExtra("dateDepart",ticket.getDateDepart());
                 intent.putExtra("arrivalPlace",ticket.getArrivalPlace());
                 intent.putExtra("departPlace",ticket.getDepartPlace());
                 intent.putExtra("namePlane",ticket.getNamePlane());
                 intent.putExtra("time",ticket.getTimeDepart());
+                intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 context.startActivity(intent);
             }

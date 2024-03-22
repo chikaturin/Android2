@@ -14,13 +14,14 @@ import android.widget.TextView;
 import com.example.doan3.Fragment.InputInforUserTicKet;
 import com.example.doan3.Fragment.NomalTicket;
 import com.example.doan3.Fragment.Pay_Fragment;
+import com.example.doan3.Fragment.Service_Fragment;
 
 public class ChooseTicket extends AppCompatActivity {
 
     Fragment fragment;
     TextView test;
     Button btnback,btnout;
-    ImageView img1,img2,img3;
+    ImageView img1,img2,img3,img4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class ChooseTicket extends AppCompatActivity {
         NomalTicket nomalTicket = new NomalTicket();
         Pay_Fragment payFragment=new Pay_Fragment();
         InputInforUserTicKet inputInforUserTicKet=new InputInforUserTicKet();
+        Service_Fragment service_fragment=new Service_Fragment();
 
 
 
@@ -63,6 +65,9 @@ public class ChooseTicket extends AppCompatActivity {
 
 
         nomalTicket.setArguments(bundle);
+        payFragment.setArguments(bundle);
+        inputInforUserTicKet.setArguments(bundle);
+        service_fragment.setArguments(bundle);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
@@ -86,9 +91,10 @@ public class ChooseTicket extends AppCompatActivity {
                     img1.setBackgroundResource(R.drawable.circle);
                     img2.setBackgroundResource(R.drawable.circle_gray);
                     img3.setBackgroundResource(R.drawable.circle_gray);
+                    img4.setBackgroundResource(R.drawable.circle_gray);
                 }
 
-                else if (currentFragment instanceof Pay_Fragment) {
+                else if (currentFragment instanceof Service_Fragment) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                     Bundle bundle = new Bundle();
@@ -102,8 +108,17 @@ public class ChooseTicket extends AppCompatActivity {
                     img1.setBackgroundResource(R.drawable.circle_gray);
                     img2.setBackgroundResource(R.drawable.circle);
                     img3.setBackgroundResource(R.drawable.circle_gray);
+                    img4.setBackgroundResource(R.drawable.circle_gray);
                 }
-
+                else if (currentFragment instanceof Pay_Fragment) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fmticket1, service_fragment);
+                    transaction.commit();
+                    img1.setBackgroundResource(R.drawable.circle_gray);
+                    img2.setBackgroundResource(R.drawable.circle_gray);
+                    img3.setBackgroundResource(R.drawable.circle);
+                    img4.setBackgroundResource(R.drawable.circle_gray);
+                }
             }
         });
         btnout.setOnClickListener(new View.OnClickListener() {
@@ -114,12 +129,14 @@ public class ChooseTicket extends AppCompatActivity {
             }
         });
     }
-    public void ChangeColor(int color1,int color2, int color3){
+    public void ChangeColor(int color1,int color2, int color3,int color4){
         img1 =findViewById(R.id.img1ticket);
         img2 =findViewById(R.id.img2ticket);
         img3 =findViewById(R.id.img3ticket);
+        img4 =findViewById(R.id.img4ticket);
         img1.setBackgroundResource(color1);
         img2.setBackgroundResource(color2);
         img3.setBackgroundResource(color3);
+        img4.setBackgroundResource(color4);
     }
 }

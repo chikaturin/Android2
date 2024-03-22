@@ -153,7 +153,7 @@ public class NomalTicket extends Fragment  {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.fmticket1,inputInforUserTicKet);
                 transaction.commit();
-                chooseAirlineTicketsActivity.ChangeColor(R.drawable.circle_gray,R.drawable.circle,R.drawable.circle_gray);
+                chooseAirlineTicketsActivity.ChangeColor(R.drawable.circle_gray,R.drawable.circle,R.drawable.circle_gray,R.drawable.circle_gray);
             }
         });
         return view;

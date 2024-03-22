@@ -64,7 +64,7 @@ public class    InputInforUserTicKet extends Fragment {
 
     private BottomSheetBehavior bottomSheetBehavior;
     Pay_Fragment payFragment = new Pay_Fragment();
-
+    Service_Fragment service_fragment=new Service_Fragment();
 
     /**
      * Use this factory method to create a new instance of
@@ -161,9 +161,9 @@ public class    InputInforUserTicKet extends Fragment {
                     return;
                 }
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fmticket1, payFragment);
+                transaction.replace(R.id.fmticket1, service_fragment);
                 transaction.commit();
-                chooseTicket.ChangeColor(R.drawable.circle_gray, R.drawable.circle_gray, R.drawable.circle);
+                chooseTicket.ChangeColor(R.drawable.circle_gray, R.drawable.circle_gray, R.drawable.circle,R.drawable.circle_gray);
             }
         });
         show.setOnClickListener(new View.OnClickListener() {
@@ -266,7 +266,7 @@ public class    InputInforUserTicKet extends Fragment {
                 bundle.putString("tvFistname",Fistname.getText().toString());
                 bundle.putString("code",code);
 
-                payFragment.setArguments(bundle);
+                service_fragment.setArguments(bundle);
                 //
             }
 
