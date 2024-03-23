@@ -10,10 +10,12 @@ public class TicketHis implements Serializable {
     private String departPlace;
     private String price;
     private  String code;
+    private String Nameservice;
+    private String PriceService;
 
     private  String code_History;
 
-    public TicketHis(String namePlane, String dateDepart, String time, String arrivalPlace, String departPlace, String price, String code, String code_History, String firstnameHis, String lastnameHis, String timeArrival) {
+    public TicketHis(String namePlane, String dateDepart, String time, String arrivalPlace, String departPlace, String price, String code, String nameservice, String priceService, String code_History, String firstnameHis, String lastnameHis, String timeArrival) {
         this.namePlane = namePlane;
         this.dateDepart = dateDepart;
         this.time = time;
@@ -21,10 +23,28 @@ public class TicketHis implements Serializable {
         this.departPlace = departPlace;
         this.price = price;
         this.code = code;
+        Nameservice = nameservice;
+        PriceService = priceService;
         this.code_History = code_History;
         this.firstnameHis = firstnameHis;
         this.lastnameHis = lastnameHis;
         this.timeArrival = timeArrival;
+    }
+
+    public String getNameservice() {
+        return Nameservice;
+    }
+
+    public void setNameservice(String nameservice) {
+        Nameservice = nameservice;
+    }
+
+    public String getPriceService() {
+        return PriceService;
+    }
+
+    public void setPriceService(String priceService) {
+        PriceService = priceService;
     }
 
     public String getCode_History() {

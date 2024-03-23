@@ -65,6 +65,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("time",ticket.getTimeDepart());
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
+                intent.putExtra("Pricecacul",ticket.getPrice());
                 context.startActivity(intent);
             }
         });
@@ -84,6 +85,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("time",ticket.getTimeDepart());
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
+                intent.putExtra("Pricecacul",ticket.getPrice()+ 1050000);
                 context.startActivity(intent);
             }
         });
@@ -103,6 +105,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("time",ticket.getTimeDepart());
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
+                intent.putExtra("Pricecacul",ticket.getPrice()+1270000);
                 context.startActivity(intent);
             }
         });

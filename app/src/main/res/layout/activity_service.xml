@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ServiceActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnbackinticketif"
+            android:layout_width="9dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/back"
+            app:iconSize="25dp"
+            app:iconTint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|center_vertical"
+            android:text="Chọn chuyến bay"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/outinputif"
+            android:layout_width="9dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/baseline_close_24"
+            app:iconSize="25dp"
+            app:iconTint="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="50dp"
+        android:paddingTop="10dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/img1ticket"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0"
+            android:background="@drawable/circle_gray"
+            android:padding="10dp"
+            app:srcCompat="@drawable/airplane" />
+
+        <ImageView
+            android:id="@+id/img2ticket"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0"
+            android:background="@drawable/circle_gray"
+            android:padding="10dp"
+            app:srcCompat="@drawable/baseline_accessibility_24" />
+
+        <ImageView
+            android:id="@+id/img3ticket"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0"
+            android:background="@drawable/circle"
+            android:padding="10dp"
+            app:srcCompat="@drawable/baseline_add_business_24" />
+
+        <ImageView
+            android:id="@+id/img4ticket"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0"
+            android:background="@drawable/circle_gray"
+            android:padding="10dp"
+            app:srcCompat="@drawable/baseline_account_balance_wallet_24" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ServiceActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tổng cộng"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/priceservicea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#FFC107"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/serviceshow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="71dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/baseline_chrome_reader_mode_24_add" />
+
+                <TextView
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:text="Thêm dịch vụ"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Xuất ăn mua trước"
+                    android:textColor="#FFC107"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvdecriptiona"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleservice"
+                    android:layout_width="match_parent"
+                    android:layout_height="379dp" />
+
+                <Button
+                    android:id="@+id/btnpayofservice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/radiusbutton2"
+                    android:text="Thanh toán"
+                    app:backgroundTint="@null" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

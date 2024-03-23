@@ -10,7 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tổng cộng"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/priceservicea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#FFC107"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:id="@+id/serviceshow"
@@ -19,10 +40,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                app:srcCompat="@drawable/baseline_chrome_reader_mode_24_add"
                 android:layout_width="71dp"
                 android:layout_height="30dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:srcCompat="@drawable/baseline_chrome_reader_mode_24_add" />
 
             <TextView
                 android:layout_width="350dp"
@@ -57,18 +78,18 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleservice"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="379dp" />
 
             <Button
                 android:id="@+id/btnpayofservice"
-                app:backgroundTint="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/radiusbutton2"
-                android:text="Thanh toán" />
+                android:text="Thanh toán"
+                app:backgroundTint="@null" />
 
         </LinearLayout>
     </LinearLayout>

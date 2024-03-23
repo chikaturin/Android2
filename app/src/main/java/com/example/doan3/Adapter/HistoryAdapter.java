@@ -42,6 +42,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.tvlastnamehis.setText(ticket.getLastnameHis());
         holder.tvprice.setText(ticket.getPrice());
         holder.tvcodehis.setText(ticket.getCode_History());
+        holder.tvnameservice.setText(ticket.getNameservice());
+        holder.tvpriceservice.setText(ticket.getPriceService());
     }
 
 
@@ -53,7 +55,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvcodehis,tvdepartPlacehis,tvarrivalPlaceHis,tvdateDeparthis,tvtimehis,tvnamePlanehis,tvcodeAirplan,tvlastnamehis,tvfirstnamehis,tvprice;
+        TextView tvpriceservice,tvnameservice,tvcodehis,tvdepartPlacehis,tvarrivalPlaceHis,tvdateDeparthis,tvtimehis,tvnamePlanehis,tvcodeAirplan,tvlastnamehis,tvfirstnamehis,tvprice;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvdepartPlacehis=itemView.findViewById(R.id.departPlacehistory);
@@ -66,6 +68,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             tvfirstnamehis=itemView.findViewById(R.id.tvFirstNamehis);
             tvprice=itemView.findViewById(R.id.tvpriceHis);
             tvcodehis=itemView.findViewById(R.id.tvcodehis);
+            tvnameservice=itemView.findViewById(R.id.Nameservice);
+            tvpriceservice=itemView.findViewById(R.id.PriceService);
         }
     }
 }

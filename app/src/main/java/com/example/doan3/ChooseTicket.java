@@ -1,36 +1,54 @@
 package com.example.doan3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.doan3.Fragment.InputInforUserTicKet;
-import com.example.doan3.Fragment.NomalTicket;
-import com.example.doan3.Fragment.Pay_Fragment;
-import com.example.doan3.Fragment.Service_Fragment;
+import com.example.doan3.Adapter.TicketAdapter;
+import com.example.doan3.Model.TicketNomal;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ChooseTicket extends AppCompatActivity {
 
-    Fragment fragment;
-    TextView test;
-    Button btnback,btnout;
+    RecyclerView recyclerView;
+    TicketAdapter ticketAdapter;
+    ArrayList<TicketNomal> arr_ticket;
+    LinearLayout nomalticket, vipticket, lnmain;
+    TextView text, text1, text2, text3;
+    Color color;
+    Button btnback,btnout,btnInforUser;
     ImageView img1,img2,img3,img4;
+
+
+
+    TextView txttottalprice;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_choose_ticket);
 
         String price = getIntent().getStringExtra("Price");
+        float pricecacul = getIntent().getFloatExtra("Pricecacul",0);
         String dateDepart=getIntent().getStringExtra("dateDepart");
         String arrivalPlace=getIntent().getStringExtra("arrivalPlace");
         String departPlace=getIntent().getStringExtra("departPlace");
@@ -38,89 +56,21 @@ public class ChooseTicket extends AppCompatActivity {
         String time=getIntent().getStringExtra("time");
         String timeArrival=getIntent().getStringExtra("timeArrival");
         String code=getIntent().getStringExtra("code");
-        String toggleButton1_state=getIntent().getStringExtra("toggleButton1_state");
-        String toggleButton2_state=getIntent().getStringExtra("toggleButton2_state");
-        String toggleButton3_state=getIntent().getStringExtra("toggleButton3_state");
 
-        NomalTicket nomalTicket = new NomalTicket();
-        Pay_Fragment payFragment=new Pay_Fragment();
-        InputInforUserTicKet inputInforUserTicKet=new InputInforUserTicKet();
-        Service_Fragment service_fragment=new Service_Fragment();
-
-
-
-        Bundle bundle = new Bundle();
-
-        bundle.putString("dateDepart",dateDepart);
-        bundle.putString("arrivalPlace",arrivalPlace);
-        bundle.putString("departPlace",departPlace);
-        bundle.putString("namePlane",namePlane);
-        bundle.putString("time",time);
-        bundle.putString("Price",price);
-        bundle.putString("timeArrival",timeArrival);
-        bundle.putString("code",code);
-        bundle.putString("toggleButton1_state",toggleButton1_state);
-        bundle.putString("toggleButton2_state",toggleButton2_state);
-        bundle.putString("toggleButton3_state",toggleButton3_state);
-
-
-        nomalTicket.setArguments(bundle);
-        payFragment.setArguments(bundle);
-        inputInforUserTicKet.setArguments(bundle);
-        service_fragment.setArguments(bundle);
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        transaction.add(R.id.fmticket1, nomalTicket);
-        transaction.commit();
-
+        addControls();
+        loadData();
+        txttottalprice=findViewById(R.id.tvtotalprice);
+        txttottalprice.setText(price);
         btnback=findViewById(R.id.btnbackinticket);
-        btnout=findViewById(R.id.outinput);
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fmticket1);
-                if (currentFragment instanceof NomalTicket) {
-                    Intent intent = new Intent(ChooseTicket.this, MainActivity.class);
-                    startActivity(intent);
-                }
-                else if (currentFragment instanceof InputInforUserTicKet) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fmticket1, nomalTicket);
-                    transaction.commit();
-                    img1.setBackgroundResource(R.drawable.circle);
-                    img2.setBackgroundResource(R.drawable.circle_gray);
-                    img3.setBackgroundResource(R.drawable.circle_gray);
-                    img4.setBackgroundResource(R.drawable.circle_gray);
-                }
-
-                else if (currentFragment instanceof Service_Fragment) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Price", price);
-
-                    InputInforUserTicKet inputInforUserTicKet = new InputInforUserTicKet();
-                    inputInforUserTicKet.setArguments(bundle);
-
-                    transaction.replace(R.id.fmticket1, inputInforUserTicKet);
-                    transaction.commit();
-                    img1.setBackgroundResource(R.drawable.circle_gray);
-                    img2.setBackgroundResource(R.drawable.circle);
-                    img3.setBackgroundResource(R.drawable.circle_gray);
-                    img4.setBackgroundResource(R.drawable.circle_gray);
-                }
-                else if (currentFragment instanceof Pay_Fragment) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fmticket1, service_fragment);
-                    transaction.commit();
-                    img1.setBackgroundResource(R.drawable.circle_gray);
-                    img2.setBackgroundResource(R.drawable.circle_gray);
-                    img3.setBackgroundResource(R.drawable.circle);
-                    img4.setBackgroundResource(R.drawable.circle_gray);
-                }
+                Intent intent =new Intent(ChooseTicket.this, MainActivity.class);
+                startActivity(new Intent(intent));
             }
         });
+
+        btnout = findViewById(R.id.outinput);
         btnout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,8 +78,96 @@ public class ChooseTicket extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnInforUser = findViewById(R.id.btninforuser);
+        btnInforUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!txttottalprice.getText().toString().isEmpty())
+                {
+                    ChangeColor(R.drawable.circle_gray, R.drawable.circle, R.drawable.circle_gray,R.drawable.circle_gray);
+                    Intent intent =new Intent(ChooseTicket.this, InforUserTicketActivity.class);
+                    intent.putExtra("Price",price);
+                    intent.putExtra("Pricecacul",pricecacul);
+                    intent.putExtra("dateDepart",dateDepart);
+                    intent.putExtra("arrivalPlace",arrivalPlace);
+                    intent.putExtra("departPlace",departPlace);
+                    intent.putExtra("namePlane",namePlane);
+                    intent.putExtra("time",time);
+                    intent.putExtra("timeArrival",timeArrival);
+                    intent.putExtra("code",code);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Vui lòng chọn vé", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        text = findViewById(R.id.textticket);
+        text1 = findViewById(R.id.textticket1);
+        text2 = findViewById(R.id.textticket2);
+        text3 = findViewById(R.id.textticket3);
+        vipticket = findViewById(R.id.vipticket);
+        nomalticket = findViewById(R.id.nomalticket);
+
+        vipticket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lnmain = findViewById(R.id.lmnomalticket);
+                lnmain.setBackgroundColor(color.parseColor("#DAA20D"));
+                text.setTextColor(color.parseColor("#ABD1BC"));
+                text1.setTextColor(color.parseColor("#ABD1BC"));
+                text2.setTextColor(color.parseColor("#FFFFFF"));
+                text3.setTextColor(color.parseColor("#FFFFFF"));
+                text1.setBackgroundColor(color.parseColor("#DAA20D"));
+                text3.setBackgroundDrawable(getResources().getDrawable(R.drawable.underline3));
+            }
+        });
+
+        nomalticket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lnmain = findViewById(R.id.lmnomalticket);
+                lnmain.setBackgroundColor(color.parseColor("#005E79"));
+                text2.setTextColor(color.parseColor("#ABD1BC"));
+                text3.setTextColor(color.parseColor("#ABD1BC"));
+                text.setTextColor(color.parseColor("#FFFFFF"));
+                text1.setTextColor(color.parseColor("#FFFFFF"));
+                text1.setBackgroundDrawable(getResources().getDrawable(R.drawable.underline2));
+                text3.setBackgroundColor(color.parseColor("#005E79"));
+            }
+        });
     }
-    public void ChangeColor(int color1,int color2, int color3,int color4){
+
+    private void loadData() {
+        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference=firebaseDatabase.getReference("list_Flight");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren())
+                {
+                    TicketNomal ticketNomal=dataSnapshot.getValue(TicketNomal.class);
+                    arr_ticket.add(ticketNomal);
+                }
+                ticketAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private void addControls() {
+        recyclerView = findViewById(R.id.recycleview);
+        arr_ticket = new ArrayList<>();
+        ticketAdapter = new TicketAdapter(this, arr_ticket);
+        recyclerView.setAdapter(ticketAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+    void ChangeColor(int color1,int color2, int color3,int color4){
         img1 =findViewById(R.id.img1ticket);
         img2 =findViewById(R.id.img2ticket);
         img3 =findViewById(R.id.img3ticket);

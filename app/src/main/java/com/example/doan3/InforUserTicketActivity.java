@@ -1,28 +1,24 @@
-package com.example.doan3.Fragment;
-
-import android.app.DatePickerDialog;
-import android.os.Bundle;
+package com.example.doan3;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doan3.ChooseTicket;
 import com.example.doan3.Model.InforUserTicket;
-import com.example.doan3.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,26 +31,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link InputInforUserTicKet#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class    InputInforUserTicKet extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public InputInforUserTicKet() {
-        // Required empty public constructor
-    }
-
+public class InforUserTicketActivity extends AppCompatActivity {
+    Button btnback, btnout;
+    ImageView img1, img2, img3, img4;
     LinearLayout btnbuttonsheet;
     LinearLayout show, hide;
     Button btnpay, btnadd;
@@ -63,73 +42,50 @@ public class    InputInforUserTicKet extends Fragment {
     TextView DateOfBirth, tvLastname, tvprice, tvFistname, tvDateOfBirth, tvNumberPhone, tvPlace, tvgender, tvpersonal;
 
     private BottomSheetBehavior bottomSheetBehavior;
-    Pay_Fragment payFragment = new Pay_Fragment();
-    Service_Fragment service_fragment=new Service_Fragment();
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment InputInforUserTicKet.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InputInforUserTicKet newInstance(String param1, String param2) {
-        InputInforUserTicKet fragment = new InputInforUserTicKet();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+        setContentView(R.layout.activity_infor_user_ticket);
 
-    View view = getView();
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_input_infor_user_tic_ket, container, false);
-        show = view.findViewById(R.id.show);
-        hide = view.findViewById(R.id.hide);
-        btnbuttonsheet = view.findViewById(R.id.btn_buttonsheet);
+        show = findViewById(R.id.show);
+        hide = findViewById(R.id.hide);
+        btnbuttonsheet =findViewById(R.id.btn_buttonsheet);
         bottomSheetBehavior = BottomSheetBehavior.from(btnbuttonsheet);
-        btnpay = view.findViewById(R.id.btnpay);
-        Lastname = view.findViewById(R.id.txtLastName);
-        Fistname = view.findViewById(R.id.txtFirstName);
-        DateOfBirth = view.findViewById(R.id.txtbirthday);
-        NumberPhone = view.findViewById(R.id.txtphone);
-        Place = view.findViewById(R.id.txtPlace);
+        btnpay = findViewById(R.id.btnpay);
+        Lastname = findViewById(R.id.txtLastName);
+        Fistname = findViewById(R.id.txtFirstName);
+        DateOfBirth = findViewById(R.id.txtbirthday);
+        NumberPhone =findViewById(R.id.txtphone);
+        Place =findViewById(R.id.txtPlace);
         DateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 birthday();
             }
         });
-        String price = getArguments().getString("Price");
-        tvprice = view.findViewById(R.id.tvpriceinfor);
+        String price = getIntent().getStringExtra("Price");
+        float pricecacul = getIntent().getFloatExtra("Pricecacul",0);
+        String dateDepart=getIntent().getStringExtra("dateDepart");
+        String arrivalPlace=getIntent().getStringExtra("arrivalPlace");
+        String departPlace=getIntent().getStringExtra("departPlace");
+        String namePlane=getIntent().getStringExtra("namePlane");
+        String time=getIntent().getStringExtra("time");
+        String timeArrival=getIntent().getStringExtra("timeArrival");
+        String code=getIntent().getStringExtra("code");
+        tvprice = findViewById(R.id.tvpriceinfor);
         tvprice.setText(price);
 
-        tvLastname = view.findViewById(R.id.tvlastname);
-        tvFistname = view.findViewById(R.id.tvFirstName);
-        tvDateOfBirth = view.findViewById(R.id.tvbirthday);
-        tvNumberPhone = view.findViewById(R.id.tvphone);
-        tvPlace = view.findViewById(R.id.tvPlace);
-        tvgender = view.findViewById(R.id.tvgender);
-        tvpersonal = view.findViewById(R.id.tvpersonal);
+        tvLastname = findViewById(R.id.tvlastname);
+        tvFistname = findViewById(R.id.tvFirstName);
+        tvDateOfBirth = findViewById(R.id.tvbirthday);
+        tvNumberPhone = findViewById(R.id.tvphone);
+        tvPlace = findViewById(R.id.tvPlace);
+        tvgender = findViewById(R.id.tvgender);
+        tvpersonal = findViewById(R.id.tvpersonal);
 
-        btnadd = view.findViewById(R.id.btnAdd);
-        hide.setVisibility(view.INVISIBLE);
+        btnadd = findViewById(R.id.btnAdd);
+        hide.setVisibility(View.INVISIBLE);
         final boolean[] isInformationAdded = new boolean[1];
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +94,7 @@ public class    InputInforUserTicKet extends Fragment {
                 firebase();
                 String phoneNumber = NumberPhone.getText().toString().trim();
                 if (phoneNumber.length() != 10) {
-                    Toast.makeText(getActivity(), "Vui lòng nhập số điện thoại đúng định dạng (10 chữ số)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập số điện thoại đúng định dạng (10 chữ số)", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     show.setVisibility(view.INVISIBLE);
@@ -151,19 +107,30 @@ public class    InputInforUserTicKet extends Fragment {
             }
         });
 
-        btnoutinput = view.findViewById(R.id.outinput);
-        ChooseTicket chooseTicket = (ChooseTicket) getActivity();
         btnpay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!isInformationAdded[0]) {
-                    Toast.makeText(getActivity(), "Vui lòng nhập thông tin trước khi thanh toán", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập thông tin trước khi thanh toán", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fmticket1, service_fragment);
-                transaction.commit();
-                chooseTicket.ChangeColor(R.drawable.circle_gray, R.drawable.circle_gray, R.drawable.circle,R.drawable.circle_gray);
+                else
+                {
+                    ChangeColor(R.drawable.circle_gray, R.drawable.circle_gray,R.drawable.circle,R.drawable.circle_gray);
+                    Intent intent =new Intent(InforUserTicketActivity.this, ServiceActivity.class);
+                    intent.putExtra("Price",price);
+                    intent.putExtra("Pricecacul", pricecacul);
+                    intent.putExtra("dateDepart",dateDepart);
+                    intent.putExtra("arrivalPlace",arrivalPlace);
+                    intent.putExtra("departPlace",departPlace);
+                    intent.putExtra("namePlane",namePlane);
+                    intent.putExtra("time",time);
+                    intent.putExtra("timeArrival",timeArrival);
+                    intent.putExtra("code",code);
+                    intent.putExtra("tvLastname",Lastname.getText().toString());
+                    intent.putExtra("tvFistname",Fistname.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
         show.setOnClickListener(new View.OnClickListener() {
@@ -174,21 +141,55 @@ public class    InputInforUserTicKet extends Fragment {
                 }
             }
         });
+        btnoutinput = findViewById(R.id.outinput);
         btnoutinput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         });
-        return view;
+
+
+        btnback = findViewById(R.id.btnbackinticketif);
+
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(InforUserTicketActivity.this, ChooseTicket.class);
+                ChangeColor(R.drawable.circle, R.drawable.circle_gray, R.drawable.circle_gray, R.drawable.circle_gray);
+                startActivity(intent);
+            }
+        });
+
+        btnout = findViewById(R.id.outinputif);
+        btnout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InforUserTicketActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        img1 = findViewById(R.id.img1ticket);
+        img2 = findViewById(R.id.img2ticket);
+        img3 = findViewById(R.id.img3ticket);
+        img4 = findViewById(R.id.img4ticket);
     }
 
+    public void ChangeColor(int color1, int color2, int color3, int color4) {
+        img1.setBackgroundResource(color1);
+        img2.setBackgroundResource(color2);
+        img3.setBackgroundResource(color3);
+        img4.setBackgroundResource(color4);
+    }
     void firebase() {
-        RadioGroup genderRadioGroup = view.findViewById(R.id.radioGroupGender);
+        RadioGroup genderRadioGroup = findViewById(R.id.radioGroupGender);
         int selectedId = genderRadioGroup.getCheckedRadioButtonId();
         String gender = "";
         if (selectedId != -1) {
-            RadioButton radioButton = view.findViewById(selectedId);
+            RadioButton radioButton = findViewById(selectedId);
             if (radioButton.getId() == R.id.radioButtonMale) {
                 gender = "Nam";
             } else {
@@ -196,11 +197,11 @@ public class    InputInforUserTicKet extends Fragment {
             }
         }
 
-        RadioGroup personalRadioGroup = view.findViewById(R.id.radioGroupPersonalDocument);
+        RadioGroup personalRadioGroup = findViewById(R.id.radioGroupPersonalDocument);
         int selectedId2 = personalRadioGroup.getCheckedRadioButtonId();
         String personal = "";
         if (selectedId2 != -1) {
-            RadioButton radioButton = view.findViewById(selectedId2);
+            RadioButton radioButton = findViewById(selectedId2);
             if (radioButton.getId() == R.id.CCCD) {
                 personal = "CCCD";
             } else {
@@ -217,7 +218,7 @@ public class    InputInforUserTicKet extends Fragment {
         InforUserTicket.put("place", Place.getText().toString().trim());
         InforUserTicket.put("personal", personal);
 
-        InforUserTicket inforUserTicket = new InforUserTicket(Fistname.getText().toString(), Lastname.getText().toString(), DateOfBirth.getText().toString(), NumberPhone.getText().toString(), gender, Place.getText().toString(), personal);
+        com.example.doan3.Model.InforUserTicket inforUserTicket = new InforUserTicket(Fistname.getText().toString(), Lastname.getText().toString(), DateOfBirth.getText().toString(), NumberPhone.getText().toString(), gender, Place.getText().toString(), personal);
         db.getReference().child("InforUserTicket").setValue(inforUserTicket);
     }
 
@@ -241,33 +242,6 @@ public class    InputInforUserTicKet extends Fragment {
                 tvgender.setText(gender);
                 tvPlace.setText(place);
                 tvpersonal.setText(personal);
-
-                //
-                String price = getArguments().getString("Price");
-                String dateDepart = getArguments().getString("dateDepart");
-                String arrivalPlace = getArguments().getString("arrivalPlace");
-                String departPlace = getArguments().getString("departPlace");
-                String namePlane = getArguments().getString("namePlane");
-                String time = getArguments().getString("time");
-                String timeArrival = getArguments().getString("timeArrival");
-                String code = getArguments().getString("code");
-
-
-                Bundle bundle = new Bundle();
-
-                bundle.putString("Price", price);
-                bundle.putString("dateDepart", dateDepart);
-                bundle.putString("arrivalPlace", arrivalPlace);
-                bundle.putString("departPlace", departPlace);
-                bundle.putString("namePlane", namePlane);
-                bundle.putString("time", time);
-                bundle.putString("timeArrival", timeArrival);
-                bundle.putString("tvLastname",Lastname.getText().toString());
-                bundle.putString("tvFistname",Fistname.getText().toString());
-                bundle.putString("code",code);
-
-                service_fragment.setArguments(bundle);
-                //
             }
 
             @Override
@@ -283,7 +257,7 @@ public class    InputInforUserTicKet extends Fragment {
         int date = calendar.get(Calendar.DATE);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 calendar.set(year,month,dayOfMonth);
@@ -293,4 +267,5 @@ public class    InputInforUserTicKet extends Fragment {
         }, year,month,date);
         datePickerDialog.show();
     }
+
 }
