@@ -2,6 +2,7 @@ package com.example.doan3.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,10 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 intent.putExtra("Pricecacul",ticket.getPrice());
+                SharedPreferences sharedPreferences = context.getSharedPreferences("ticket_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("Pricecacul", ticket.getPrice());
+                editor.apply();
                 context.startActivity(intent);
             }
         });
@@ -86,6 +91,10 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 intent.putExtra("Pricecacul",ticket.getPrice()+ 1050000);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("ticket_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("Pricecacul", ticket.getPrice()+1050000);
+                editor.apply();
                 context.startActivity(intent);
             }
         });
@@ -106,6 +115,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 intent.putExtra("Pricecacul",ticket.getPrice()+1270000);
+
                 context.startActivity(intent);
             }
         });
