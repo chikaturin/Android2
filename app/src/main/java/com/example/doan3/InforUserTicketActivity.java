@@ -150,19 +150,6 @@ public class InforUserTicketActivity extends AppCompatActivity {
         });
 
 
-        btnback = findViewById(R.id.btnbackinticketif);
-
-
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(InforUserTicketActivity.this, ChooseTicket.class);
-                ChangeColor(R.drawable.circle, R.drawable.circle_gray, R.drawable.circle_gray, R.drawable.circle_gray);
-                startActivity(intent);
-            }
-        });
-
         btnout = findViewById(R.id.outinputif);
         btnout.setOnClickListener(new View.OnClickListener() {
             @Override

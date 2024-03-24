@@ -1,11 +1,14 @@
 package com.example.doan3;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.doan3.Adapter.TicketAdapter;
 import com.example.doan3.Model.TicketNomal;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +40,7 @@ public class ChooseTicket extends AppCompatActivity {
     Button btnback,btnout,btnInforUser;
     ImageView img1,img2,img3,img4;
 
-
-
+    String ngayDi,noiDi,noiDen;
     TextView txttottalprice;
 
 
@@ -56,19 +59,21 @@ public class ChooseTicket extends AppCompatActivity {
         String time=getIntent().getStringExtra("time");
         String timeArrival=getIntent().getStringExtra("timeArrival");
         String code=getIntent().getStringExtra("code");
+        SharedPreferences sharedPreferences = getSharedPreferences("ticket_dataa", Context.MODE_PRIVATE);
+        String arrivalplace = sharedPreferences.getString("Arrivalplace"," ");
+        String date = sharedPreferences.getString("Date"," ");
+        String departplace = sharedPreferences.getString("Departplace"," ");
+
+
+        //code cua trong
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        //
 
         addControls();
-        loadData();
+        loadData(date,departplace,arrivalplace);
         txttottalprice=findViewById(R.id.tvtotalprice);
         txttottalprice.setText(price);
-        btnback=findViewById(R.id.btnbackinticket);
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(ChooseTicket.this, MainActivity.class);
-                startActivity(new Intent(intent));
-            }
-        });
 
         btnout = findViewById(R.id.outinput);
         btnout.setOnClickListener(new View.OnClickListener() {
@@ -140,30 +145,58 @@ public class ChooseTicket extends AppCompatActivity {
             }
         });
     }
-
-    private void loadData() {
+    private void loadData(String ngayDi,String noiDi,String noiDen) {
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference("list_Flight");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot:snapshot.getChildren())
-                {
-                    TicketNomal ticketNomal=dataSnapshot.getValue(TicketNomal.class);
-                    arr_ticket.add(ticketNomal);
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                TicketNomal ticketNomal=snapshot.getValue(TicketNomal.class);
+                if (ticketNomal != null){
+                    if(ticketNomal.getDateDepart().equals(ngayDi) && ticketNomal.getDepartPlace().equals(noiDi) && ticketNomal.getArrivalPlace().equals(noiDen)){
+                        arr_ticket.add(ticketNomal);
+                    }
+                    ticketAdapter.notifyDataSetChanged();
                 }
-                ticketAdapter.notifyDataSetChanged();
+
             }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot dataSnapshot:snapshot.getChildren())
+//                {
+//                    TicketNomal ticketNomal=dataSnapshot.getValue(TicketNomal.class);
+//                    arr_ticket.add(ticketNomal);
+//                }
+//                ticketAdapter.notifyDataSetChanged();
+//            }
         });
     }
 
     private void addControls() {
         recyclerView = findViewById(R.id.recycleview);
         arr_ticket = new ArrayList<>();
-        ticketAdapter = new TicketAdapter(this, arr_ticket);
+        ticketAdapter = new TicketAdapter(this, arr_ticket,ngayDi,noiDen,noiDi);
         recyclerView.setAdapter(ticketAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

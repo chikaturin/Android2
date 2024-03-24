@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#03A9F4"
+    android:orientation="vertical"
+
+    tools:context=".Timve_mc">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:orientation="horizontal">
+        <TextView
+            android:text="Đặt vé máy bay"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </LinearLayout>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/mc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Một chiều"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/kh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Một chiều" />
+        </TableRow>
+    </TableLayout>
+
+    <EditText
+        android:id="@+id/etNoidi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColorHint="@color/white"
+        android:hint="Chọn nơi đi" />
+    <EditText
+        android:id="@+id/etNoiden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColorHint="@color/white"
+        android:hint="Chọn nơi đến" />
+
+    <TextView
+        android:id="@+id/et_Ngaydi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Ngày đi"
+        android:inputType="text"
+        android:textColorHint="@color/white"
+        android:textSize="25sp" />
+    <Button
+        android:id="@+id/TimVe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="Tìm Vé" />
+</LinearLayout>

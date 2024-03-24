@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Khởi chạy hoạt động mới khi nút được nhấn
-                Intent intent = new Intent(MainActivity.this,ChooseTicket.class);
+                Intent intent = new Intent(MainActivity.this, Timve_mc.class);
                 startActivity(intent);
             }
         });

@@ -105,19 +105,6 @@ public class ServiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnback = findViewById(R.id.btnbackinticketif);
-
-
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(ServiceActivity.this, InforUserTicketActivity.class);
-                intent.putExtra("Price",String.format("%,.0f VNĐ",pricecacul));
-                ChangeColor( R.drawable.circle_gray,R.drawable.circle,R.drawable.circle_gray, R.drawable.circle_gray);
-                startActivity(intent);
-            }
-        });
 
         btnout = findViewById(R.id.outinputif);
         btnout.setOnClickListener(new View.OnClickListener() {

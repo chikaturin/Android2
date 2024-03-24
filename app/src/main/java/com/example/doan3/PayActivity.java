@@ -113,16 +113,6 @@ public class PayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnback = findViewById(R.id.btnbackinticket);
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(PayActivity.this, ServiceActivity.class);
-                ChangeColor(R.drawable.circle_gray, R.drawable.circle_gray,R.drawable.circle, R.drawable.circle_gray);
-                startActivity(intent);
-            }
-        });
 
         btnout = findViewById(R.id.outinput);
         btnout.setOnClickListener(new View.OnClickListener() {

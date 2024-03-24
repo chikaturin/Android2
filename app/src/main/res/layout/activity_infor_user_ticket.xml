@@ -14,14 +14,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnbackinticketif"
             android:layout_width="9dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center_vertical"
             app:backgroundTint="@color/white"
-            app:icon="@drawable/back"
             app:iconSize="25dp"
             app:iconTint="@color/black" />
 
@@ -133,7 +131,8 @@
                         android:layout_height="wrap_content"
                         android:text="8,776,000 VND"
                         android:textColor="#FFC107"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView34"

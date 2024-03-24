@@ -21,11 +21,14 @@
         <activity
             android:name=".InforUserTicketActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".NomalActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".SupportActivity"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".NomalActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SupportActivity"
+            android:name=".Timve_mc"
             android:exported="false" />
         <activity
             android:name=".History"

@@ -1,7 +1,9 @@
 package com.example.doan3.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +38,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
     private String price;
 
     public ServiceAdapter(Context context, ArrayList<Servicemodel> arr_service, float pricecacul,String namePlane,String dateDepart,String timeDepart,String arrivalPlace,
-    String departPlace,String code,String timeArrival,String firstName,String lastName,String price) {
+                          String departPlace,String code,String timeArrival,String firstName,String lastName,String price) {
         this.context = context;
         this.arr_service = arr_service;
         this.pricecacul = pricecacul;
@@ -66,13 +68,17 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
         holder.img.setImageResource(servicemodel.getImage());
         holder.decription.setText(servicemodel.getName());
         holder.price.setText(String.format("%,.0f VNĐ", servicemodel.getPrice()));
-
         holder.choose.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("DefaultLocale")
             @Override
             public void onClick(View v) {
                 toggleButton(holder.choose);
                 Intent intent=new Intent(context, ServiceActivity.class);
-                float totalprice = servicemodel.getPrice() + pricecacul;
+                SharedPreferences sharedPreferences = context.getSharedPreferences("ticket_data", Context.MODE_PRIVATE);
+
+                float priceCacul = sharedPreferences.getFloat("Pricecacul", 0.0f);
+                float totalprice = servicemodel.getPrice() + priceCacul;
+
                 intent.putExtra("Pricecacula",String.format("%,.0f VNĐ", totalprice));
                 intent.putExtra("name",servicemodel.getName());
                 intent.putExtra("PriceService",String.format("%,.0f VNĐ",servicemodel.getPrice()));
@@ -86,6 +92,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
                 intent.putExtra("code",code);
                 intent.putExtra("tvLastname",firstName);
                 intent.putExtra("tvFistname",lastName);
+
                 context.startActivity(intent);
             }
         });

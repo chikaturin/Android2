@@ -14,14 +14,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnbackinticket"
             android:layout_width="9dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center_vertical"
             app:backgroundTint="@color/white"
-            app:icon="@drawable/back"
             app:iconSize="25dp"
             app:iconTint="@color/black" />
 
