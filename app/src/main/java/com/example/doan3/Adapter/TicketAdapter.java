@@ -2,6 +2,7 @@ package com.example.doan3.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +19,18 @@ import java.util.ArrayList;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
     private Context context;
+    private String date;
+    private  String arrivalplace;
+    private String departplace;
 
     private ArrayList<TicketNomal> arr_tikket;
 
-    public TicketAdapter(Context context, ArrayList<TicketNomal> arr_tikket) {
+    public TicketAdapter(Context context, ArrayList<TicketNomal> arr_tikket,String date,String arrivalplace,String departplace) {
         this.context = context;
         this.arr_tikket = arr_tikket;
+        this.date=date;
+        this.arrivalplace=arrivalplace;
+        this.departplace=departplace;
     }
     @NonNull
     @Override
@@ -50,6 +57,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         holder.txtcode.setText(ticket.getCode());
 
 
+
+
         holder.btnchoose1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +75,18 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 intent.putExtra("Pricecacul",ticket.getPrice());
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences("ticket_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("Pricecacul", ticket.getPrice());
+                editor.putString("Arrivalplace",arrivalplace);
+                intent.putExtra("Arrvalplaceintent",arrivalplace);
+                editor.putString("Date",date);
+                intent.putExtra("Dateintent",date);
+                editor.putString("Departplace",departplace);
+                intent.putExtra("Departplaceintent",departplace);
+                editor.apply();
+
                 context.startActivity(intent);
             }
         });
@@ -86,6 +107,15 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 intent.putExtra("Pricecacul",ticket.getPrice()+ 1050000);
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences("ticket_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("Pricecacul", ticket.getPrice()+ 1050000);
+                editor.putString("Arrivalplace",arrivalplace);
+                editor.putString("Date",date);
+                editor.putString("Departplace",departplace);
+                editor.apply();
+
                 context.startActivity(intent);
             }
         });
@@ -106,6 +136,15 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 intent.putExtra("timeArrival",ticket.getTimeArrival());
                 intent.putExtra("code",ticket.getCode());
                 intent.putExtra("Pricecacul",ticket.getPrice()+1270000);
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences("ticket_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putFloat("Pricecacul", ticket.getPrice()+1270000);
+                editor.putString("Arrivalplace",arrivalplace);
+                editor.putString("Date",date);
+                editor.putString("Departplace",departplace);
+                editor.apply();
+
                 context.startActivity(intent);
             }
         });
